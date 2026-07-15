@@ -1,7 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-slate-975: #1d1e2c;
+  --color-surface-950: #080f15;
+  --color-surface-850: #0e1f29;
+  --color-surface-900: #0b1921;
+  --color-brand-600: #1b3e52;
+  --color-brand-700: #1a3b4d;
+  --color-brand-500: #367ba2;
+  --color-accent-500: #2a6063;
+  --color-brand-400: #55c2c9;
+
+  --breakpoint-xs: 23.4375rem;
+  --breakpoint-2xl: 90rem;
+  --breakpoint-3xl: 120rem;
 }
 
 @layer base {
