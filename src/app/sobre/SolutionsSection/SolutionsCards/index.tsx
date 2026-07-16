@@ -5,8 +5,8 @@ const SolutionsCards = () => {
   return (
     <div className="3xl:grid-cols-4 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
       {solutionsCards.map((card) => (
-        <article key={card.id} className="bg-border-brand rounded-2xl p-0.5">
-          <div className="bg-surface-875 flex h-full flex-col gap-4 rounded-2xl p-4 md:gap-8">
+        <article key={card.id} className="bg-border-brand rounded-2xl p-0.5 md:rounded-4xl">
+          <div className="bg-surface-875 flex h-full flex-col gap-4 rounded-2xl p-4 md:gap-8 md:rounded-4xl md:p-8">
             <div className="relative aspect-16/10 w-full overflow-hidden rounded-xl">
               <Image
                 src={card.image}

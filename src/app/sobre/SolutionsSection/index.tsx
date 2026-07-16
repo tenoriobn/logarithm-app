@@ -7,7 +7,7 @@ const SolutionsSection = () => {
         <h2 className="text-gradient text-gradient-white text-center text-[clamp(1.5rem,6vw,3.5rem)] font-medium">
           Onde fazemos diferença
         </h2>
-        <p className="text-gradient text-gradient-white max-w-[704] text-center text-[clamp(1rem,3vw,1.5rem)] xl:max-w-270">
+        <p className="text-gradient text-gradient-white max-w-176 text-center text-[clamp(1rem,3vw,1.5rem)] xl:max-w-270">
           Nem toda solução começa com código. Muitas começam ao identificar processos ineficientes,
           sistemas desconectados e oportunidades que impedem um negócio de evoluir.
         </p>

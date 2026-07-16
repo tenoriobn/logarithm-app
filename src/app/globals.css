@@ -6,7 +6,9 @@
   --color-surface-850: #0e1f29;
   --color-surface-875: #102531;
   --color-surface-900: #0b1921;
+  --color-brand-725: #102734;
   --color-brand-600: #1b3e52;
+  --color-brand-675: #183749;
   --color-brand-650: #153c4a;
   --color-brand-700: #1a3b4d;
   --color-brand-550: #234f68;
@@ -37,6 +39,15 @@
     142deg,
     rgb(from var(--color-brand-550) r g b / 20%) 77%,
     var(--color-brand-400) 100%
+  );
+
+  --background-image-button-brand: linear-gradient(
+    90deg,
+    var(--color-brand-600) 0%,
+    rgb(from var(--color-brand-600) r g b / 50%) 30%,
+    rgb(from var(--color-brand-600) r g b / 32%) 50.48%,
+    rgb(from var(--color-brand-600) r g b / 50%) 70%,
+    var(--color-brand-600) 100%
   );
 }
 
