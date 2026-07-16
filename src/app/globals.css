@@ -4,10 +4,12 @@
   --color-surface-400: #aeb1b5;
   --color-surface-950: #080f15;
   --color-surface-850: #0e1f29;
+  --color-surface-875: #102531;
   --color-surface-900: #0b1921;
   --color-brand-600: #1b3e52;
   --color-brand-650: #153c4a;
   --color-brand-700: #1a3b4d;
+  --color-brand-550: #234f68;
   --color-brand-500: #367ba2;
   --color-accent-500: #2a6063;
   --color-brand-400: #55c2c9;
@@ -23,14 +25,37 @@
     rgb(255 255 255) 58.17%,
     rgb(255 255 255 / 50%) 100%
   );
+
+  --gradient-text-brand: linear-gradient(
+    90deg,
+    var(--color-accent-500) 0%,
+    var(--color-brand-400) 50.48%,
+    var(--color-accent-500) 100%
+  );
+
+  --background-image-border-brand: linear-gradient(
+    142deg,
+    rgb(from var(--color-brand-550) r g b / 20%) 77%,
+    var(--color-brand-400) 100%
+  );
 }
 
-@utility text-gradient-white {
-  background: var(--gradient-text-white);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+@layer utilities {
+  .text-gradient {
+    background: var(--text-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-white {
+    --text-gradient: var(--gradient-text-white);
+  }
+
+  .text-gradient-brand {
+    --text-gradient: var(--gradient-text-brand);
+  }
 }
 
 @layer base {

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import HeroSection from './HeroSection';
+import SolutionsSection from './SolutionsSection';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
 
       <main className="flex flex-1 flex-col">
         <HeroSection />
+        <SolutionsSection />
       </main>
       <footer className="bg-yellow-500">Footer - Sobre</footer>
     </>
