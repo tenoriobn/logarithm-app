@@ -40,6 +40,15 @@
     rgb(from var(--color-brand-550) r g b / 20%) 77%,
     var(--color-brand-400) 100%
   );
+
+  --background-image-button-brand: linear-gradient(
+    90deg,
+    var(--color-brand-600) 0%,
+    rgb(from var(--color-brand-600) r g b / 50%) 30%,
+    rgb(from var(--color-brand-600) r g b / 32%) 50.48%,
+    rgb(from var(--color-brand-600) r g b / 50%) 70%,
+    var(--color-brand-600) 100%
+  );
 }
 
 @layer utilities {

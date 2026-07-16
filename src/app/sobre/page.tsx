@@ -2,6 +2,7 @@ import Image from 'next/image';
 import HeroSection from './HeroSection';
 import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
+import CallToActionSection from './CallToActionSection';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <HeroSection />
         <SolutionsSection />
         <PrinciplesSection />
+        <CallToActionSection />
       </main>
       <footer className="bg-yellow-500">Footer - Sobre</footer>
     </>
