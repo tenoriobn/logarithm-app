@@ -6,7 +6,7 @@ const CallToActionSection = () => {
     <section className="bg-surface-950 flex min-h-svh flex-col items-center justify-center gap-4 px-4 py-16 md:gap-8 md:px-8 md:py-24">
       <div
         aria-hidden
-        className="absolute h-full w-full bg-[linear-gradient(180deg,#102531_0%,rgba(14,31,41,0.132212)_20%,rgba(14,31,41,0)_50%,rgba(14,31,41,0.13)_80%,rgba(14,31,41,0.7)_100%),linear-gradient(0deg,#080F15,#080F15)] bg-size-[100%_100%,100%_100%]"
+        className="absolute h-full w-full bg-[linear-gradient(180deg,#102531_0%,rgba(14,31,41,0.132212)_20%,rgba(14,31,41,0)_50%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_100%),linear-gradient(0deg,#080F15,#080F15)] bg-size-[100%_100%,100%_100%]"
       />
 
       <div className="z-2 space-y-4">

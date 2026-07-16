@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import CallToActionSection from './CallToActionSection';
+import Footer from 'src/components/Footer';
 
 export default function Home() {
   return (
@@ -22,7 +23,8 @@ export default function Home() {
         <PrinciplesSection />
         <CallToActionSection />
       </main>
-      <footer className="bg-yellow-500">Footer - Sobre</footer>
+
+      <Footer />
     </>
   );
 }
