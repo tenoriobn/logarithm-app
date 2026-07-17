@@ -1,19 +1,19 @@
+import SectionTitle from 'src/components/SectionTitle';
 import HeroBackground from './HeroBackground';
+import SectionDescription from 'src/components/SectionDescription';
 
 const HeroSection = () => {
   return (
-    <section className="bg-surface-950 flex min-h-svh flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24">
+    <section className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[6.667vw] flex min-h-svh flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24">
       <HeroBackground />
 
-      <header className="z-2 flex flex-col gap-4">
-        <h2 className="text-gradient text-gradient-white text-center text-[clamp(1.5rem,6vw,3.5rem)] font-medium">
-          Por trás de toda solução
-        </h2>
+      <header className="3xl:gap-[.833vw] z-2 flex flex-col gap-4">
+        <SectionTitle id="hero-section-title">Por trás de toda solução</SectionTitle>
 
-        <p className="text-gradient text-gradient-white text-center text-[clamp(1rem,3vw,1.5rem)] max-sm:max-w-[288px]">
+        <SectionDescription id="hero-section-description" className="max-sm:max-w-[288px]">
           Existe uma forma de pensar, decidir e construir.
           <br className="hidden sm:max-xl:block" /> É isso que você encontrará nesta página.
-        </p>
+        </SectionDescription>
       </header>
     </section>
   );

@@ -7,7 +7,7 @@ const HeroBackground = () => {
 
   return (
     <>
-      <div
+      {/* <div
         aria-hidden
         className="bg-brand-650 pointer-events-none absolute -top-14 -left-14 h-46 w-46 rounded-full blur-3xl"
       />
@@ -15,7 +15,7 @@ const HeroBackground = () => {
       <div
         aria-hidden
         className="bg-brand-650 pointer-events-none absolute -bottom-14 -left-14 h-46 w-46 rounded-full blur-3xl"
-      />
+      /> */}
 
       <Image
         src="/images/frame-hero-section.avif"
