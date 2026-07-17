@@ -19,7 +19,7 @@
   --breakpoint-xs: 23.4375rem;
   --breakpoint-sm: 26.5625rem;
   --breakpoint-2xl: 90rem;
-  --breakpoint-3xl: 120rem;
+  --breakpoint-3xl: 120.0625rem;
 
   --gradient-text-white: linear-gradient(
     90deg,

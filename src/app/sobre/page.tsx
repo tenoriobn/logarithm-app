@@ -4,18 +4,12 @@ import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import CallToActionSection from './CallToActionSection';
 import Footer from 'src/components/Footer';
+import Header from 'src/components/Header';
 
 export default function Home() {
   return (
     <>
-      <header className="absolute z-1 flex w-full items-center justify-between p-4 md:p-8">
-        <Image src="/icons/logo.png" width={24} height={32} alt="Logo do tipo" />
-
-        <button className="flex w-full max-w-14 flex-col gap-1.5">
-          <span className="bg-surface-400 relative h-0.75 rounded-full" />
-          <span className="bg-surface-400 relative h-0.75 rounded-full" />
-        </button>
-      </header>
+      <Header />
 
       <main className="flex flex-1 flex-col">
         <HeroSection />
