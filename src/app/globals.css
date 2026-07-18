@@ -52,6 +52,10 @@
 }
 
 @layer utilities {
+  .transition-default {
+    @apply transition duration-300 ease-in-out;
+  }
+
   .text-gradient {
     background: var(--text-gradient);
     background-clip: text;
@@ -67,6 +71,42 @@
   .text-gradient-brand {
     --text-gradient: var(--gradient-text-brand);
   }
+
+  .button-brand-animated {
+    background-size: 250% 100%;
+    animation: button-gradient-flow 6s ease-in-out infinite;
+
+    transition:
+      scale 0.3s ease,
+      background-size 0.8s ease,
+      background-color 0.8s ease,
+      filter 0.8s ease;
+  }
+
+  .button-brand-animated:hover {
+    background-color: var(--color-brand-700) !important;
+  }
+
+  .button-brand-animated:active {
+    background-size: 300% 300%;
+
+    filter: saturate(1) brightness(1);
+    animation: none;
+  }
+
+  @keyframes button-gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 @layer base {
@@ -81,7 +121,11 @@
     padding: 0;
   }
 
-  button {
+  button,
+  a {
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 }
