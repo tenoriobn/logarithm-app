@@ -5,10 +5,10 @@ import SectionTitle from 'src/components/SectionTitle';
 
 const CallToActionSection = () => {
   return (
-    <section className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] flex min-h-svh flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8">
+    <section className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] relative flex min-h-svh flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8">
       <div
         aria-hidden
-        className="absolute h-full w-full bg-[linear-gradient(180deg,#102531_0%,rgba(14,31,41,0.132212)_20%,rgba(14,31,41,0)_50%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_100%),linear-gradient(0deg,#080F15,#080F15)] bg-size-[100%_100%,100%_100%]"
+        className="absolute top-0 h-full w-full bg-[linear-gradient(0deg,#102531_0%,rgba(14,31,41,0.132212)_20%,rgba(14,31,41,0)_50%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_100%)] bg-size-[100%_100%,100%_100%]"
       />
 
       <div className="3xl:space-y-[0.833vw] z-2 space-y-4">
