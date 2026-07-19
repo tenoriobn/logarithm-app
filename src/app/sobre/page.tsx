@@ -3,10 +3,11 @@ import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import CallToActionSection from './CallToActionSection';
 import Header from 'src/components/Header';
+import SmoothScrolling from 'src/components/SmoothScrollProvider';
 
 export default function Home() {
   return (
-    <>
+    <SmoothScrolling>
       <Header />
 
       <main className="flex flex-1 flex-col">
@@ -15,6 +16,6 @@ export default function Home() {
         <PrinciplesSection />
         <CallToActionSection />
       </main>
-    </>
+    </SmoothScrolling>
   );
 }

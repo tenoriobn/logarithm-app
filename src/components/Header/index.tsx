@@ -7,7 +7,7 @@ const Header = () => {
         src="/icons/logo.png"
         width={24}
         height={32}
-        className="h-[1.666vw] w-[1.25vw]"
+        className="w-6 h-8 3xl:h-[1.666vw] 3xl:w-[1.25vw]"
         alt="Logo do tipo"
       />
 
