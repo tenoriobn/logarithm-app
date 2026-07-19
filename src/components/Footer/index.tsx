@@ -3,7 +3,7 @@ import { SOCIAL_LINK } from './socialLink';
 
 const Footer = () => {
   return (
-    <footer className="relative z-2 row-start-3 mt-auto w-full self-end">
+    <footer className="bg-surface-850 3xl:p-[1.666vw] p-4 pt-0! md:p-8 relative">
       <nav className="3xl:mb-[1.666vw] 3xl:gap-[0.833vw] mb-4 flex justify-center gap-4 md:mb-8 lg:justify-end">
         {SOCIAL_LINK.map(({ icon: Icon, href, ariaLabel }) => (
           <Link

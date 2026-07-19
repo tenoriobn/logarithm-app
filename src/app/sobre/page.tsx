@@ -4,6 +4,7 @@ import PrinciplesSection from './PrinciplesSection';
 import CallToActionSection from './CallToActionSection';
 import Header from 'src/components/Header';
 import SmoothScrolling from 'src/components/SmoothScrollProvider';
+import Footer from 'src/components/Footer';
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
         <PrinciplesSection />
         <CallToActionSection />
       </main>
+
+      <Footer />
     </SmoothScrolling>
   );
 }
