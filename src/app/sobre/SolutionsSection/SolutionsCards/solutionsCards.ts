@@ -31,4 +31,12 @@ export const solutionsCards = [
     description:
       'Projetamos arquiteturas preparadas para acompanhar o crescimento da operação com estabilidade e desempenho.',
   },
+  {
+    id: 5,
+    image: '/images/digital-products.png',
+    category: 'IDEIAS EM EVOLUÇÃO',
+    title: 'Produtos Digitais',
+    description:
+      'Desenvolvemos produtos digitais focados em resolver problemas reais e preparados para evoluir desde o primeiro dia.',
+  },
 ];
