@@ -2,7 +2,7 @@ import { principlesCards } from './principlesCards';
 
 const PrinciplesCards = () => {
   return (
-    <div className="3xl:gap-[1.666vw] z-2 grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2 2xl:grid-cols-12">
+    <div className="3xl:gap-[1.666vw] z-2 grid auto-rows-fr grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2 2xl:grid-cols-12">
       {principlesCards.map((card, index) => (
         <article
           key={card.id}
