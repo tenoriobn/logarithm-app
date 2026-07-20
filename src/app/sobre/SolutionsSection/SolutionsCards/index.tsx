@@ -16,6 +16,25 @@ const SolutionsCards = () => {
       if (!container || !track) {
         return;
       }
+
+      const articles = track.querySelectorAll('article');
+      gsap.fromTo(
+        articles,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 85%',
+            end: 'top 40%',
+            scrub: 0.8,
+          },
+        }
+      );
+
       const getScrollDistance = () => {
         const trackWidth = track.scrollWidth;
         const containerWidth = container.getBoundingClientRect().width;
@@ -79,7 +98,7 @@ const SolutionsCards = () => {
         {solutionsCards.map((card) => (
           <article
             key={card.id}
-            className="grid grid-rows-subgrid row-span-2 bg-border-brand 3xl:rounded-[1.666vw] 3xl:p-[0.139vw] 3xl:w-[calc(50cqw-2.5vw)] 3xl:max-w-none h-full shrink-0 rounded-2xl p-0.5 md:rounded-4xl w-[calc(100cqw-2rem)] md:w-[calc(100cqw-4rem)] max-w-[488px] lg:w-[calc(50cqw-3rem)] 2xl:max-w-[672px] first:ml-4 md:first:ml-8 3xl:first:ml-[1.666vw] last:mr-4 md:last:mr-8 3xl:last:mr-[1.666vw] min-h-[342px]"
+            className="opacity-0 grid grid-rows-subgrid row-span-2 bg-border-brand 3xl:rounded-[1.666vw] 3xl:p-[0.139vw] 3xl:w-[calc(50cqw-2.5vw)] 3xl:max-w-none h-full shrink-0 rounded-2xl p-0.5 md:rounded-4xl w-[calc(100cqw-2rem)] md:w-[calc(100cqw-4rem)] max-w-[488px] lg:w-[calc(50cqw-3rem)] 2xl:max-w-[672px] first:ml-4 md:first:ml-8 3xl:first:ml-[1.666vw] last:mr-4 md:last:mr-8 3xl:last:mr-[1.666vw] min-h-[342px]"
           >
             <div className="bg-surface-875 3xl:gap-[1.666vw] 3xl:rounded-[1.666vw] 3xl:p-[1.666vw] grid grid-rows-subgrid row-span-2 h-full gap-4 rounded-2xl p-4 md:gap-6 lg:gap-8 md:rounded-4xl md:p-6 lg:p-8 overflow-hidden">
               <div className="relative aspect-video shrink-0 min-h-[120px] w-full overflow-hidden rounded-xl flex-1 h-full">
