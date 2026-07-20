@@ -34,7 +34,7 @@ const HeroBackground = () => {
         className={`object-cover object-[calc(81%+120px)_center] mix-blend-color-dodge brightness-[0.4] transition-opacity duration-700 md:object-[calc(84%+120px)_center] xl:object-center ${videoReady ? 'opacity-0' : 'opacity-100'} `}
       />
 
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -45,7 +45,7 @@ const HeroBackground = () => {
       >
         <source src="/videos/about-hero-section.webm" type="video/webm" />
         <source src="/videos/about-hero-section.mp4" type="video/mp4" />
-      </video>
+      </video> */}
 
       <div
         aria-hidden
