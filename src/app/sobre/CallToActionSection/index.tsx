@@ -5,7 +5,7 @@ import SectionTitle from 'src/components/SectionTitle';
 
 const CallToActionSection = () => {
   return (
-    <section className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] flex min-h-svh flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8 relative">
+    <section className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] flex min-h-svh flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8 relative will-change-transform">
       <div
         aria-hidden
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,31,41)_5%,rgba(14,31,41,0)_30%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_100%)] bg-size-[100%_100%,100%_100%]"

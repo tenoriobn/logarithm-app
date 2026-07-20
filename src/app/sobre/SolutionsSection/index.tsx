@@ -4,7 +4,7 @@ import SectionDescription from 'src/components/SectionDescription';
 
 const SolutionsSection = () => {
   return (
-    <section className="bg-surface-850 shrink-0 relative z-20 ">
+    <section className="bg-surface-850 shrink-0 relative z-20 will-change-transform">
       <div id="solutions-pin-target" className="3xl:gap-[1.666vw]  flex min-h-svh flex-col items-center gap-4 md:gap-8 w-full py-4 md:py-8 3xl:py-[1.666vw]">
         <div className="3xl:space-y-[.833vw] space-y-4 shrink-0 3xl:px-[1.666vw] px-4 md:px-8">
           <SectionTitle id="hero-section-title">Onde fazemos diferença</SectionTitle>
