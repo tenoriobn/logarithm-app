@@ -101,6 +101,10 @@
       background-position: 0% 50%;
     }
   }
+
+  .custom-blur {
+    backdrop-filter: blur(284.29998779296875px)
+  }
 }
 
 @layer base {

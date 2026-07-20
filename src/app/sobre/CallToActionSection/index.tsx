@@ -43,7 +43,7 @@ const CallToActionSection = () => {
     >
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,31,41)_5%,rgba(14,31,41,0)_30%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_100%)] bg-size-[100%_100%,100%_100%]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,31,41)_5%,rgba(14,31,41,0)_30%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_98%)]"
       />
 
       <div className="3xl:space-y-[0.833vw] z-2 space-y-4">
