@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
   subsets: ['latin'],
+});
+
+const aboro = localFont({
+  src: '../assets/fonts/aboro/Aboro.otf',
+  variable: '--font-aboro',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -130,7 +137,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={`${plusJakartaSans.className} h-full antialiased`}>
+    <html lang="pt-br" className={`${plusJakartaSans.className} ${aboro.variable} h-full antialiased`}>
       <body className={`${plusJakartaSans.className} flex min-h-full flex-col`}>{children}</body>
     </html>
   );
