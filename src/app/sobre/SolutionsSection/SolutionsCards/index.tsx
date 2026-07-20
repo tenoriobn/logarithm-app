@@ -6,7 +6,7 @@ import { solutionsCards } from './solutionsCards';
 
 const SolutionsCards = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLUListElement>(null);
 
   useGSAP(
     () => {
@@ -17,9 +17,9 @@ const SolutionsCards = () => {
         return;
       }
 
-      const articles = track.querySelectorAll('article');
+      const listItems = track.querySelectorAll('li');
       gsap.fromTo(
-        articles,
+        listItems,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -91,20 +91,20 @@ const SolutionsCards = () => {
       className="relative z-10 w-full flex-1 min-h-0 overflow-hidden"
       style={{ containerType: 'inline-size' } as React.CSSProperties}
     >
-      <div
+      <ul
         ref={trackRef}
         className="3xl:gap-[1.666vw] grid grid-flow-col grid-rows-[1fr_auto] h-full w-max items-center gap-4 will-change-transform md:gap-8"
       >
         {solutionsCards.map((card) => (
-          <article
+          <li
             key={card.id}
-            className="opacity-0 grid grid-rows-subgrid row-span-2 bg-border-brand 3xl:rounded-[1.666vw] 3xl:p-[0.139vw] 3xl:w-[calc(50cqw-2.5vw)] 3xl:max-w-none h-full shrink-0 rounded-2xl p-0.5 md:rounded-4xl w-[calc(100cqw-2rem)] md:w-[calc(100cqw-4rem)] max-w-[488px] lg:w-[calc(50cqw-3rem)] 2xl:max-w-[672px] first:ml-4 md:first:ml-8 3xl:first:ml-[1.666vw] last:mr-4 md:last:mr-8 3xl:last:mr-[1.666vw] min-h-[342px]"
+            className="opacity-0 grid grid-rows-subgrid row-span-2 bg-border-brand 3xl:rounded-[1.666vw] 3xl:p-[0.139vw] 3xl:w-[calc(50cqw-2.5vw)] 3xl:max-w-none h-full shrink-0 rounded-2xl p-0.5 md:rounded-4xl w-[calc(100cqw-2rem)] md:w-[calc(100cqw-4rem)] max-w-122 lg:w-[calc(50cqw-3rem)] 2xl:max-w-2xl first:ml-4 md:first:ml-8 3xl:first:ml-[1.666vw] last:mr-4 md:last:mr-8 3xl:last:mr-[1.666vw] min-h-85.5"
           >
-            <div className="bg-surface-875 3xl:gap-[1.666vw] 3xl:rounded-[1.666vw] 3xl:p-[1.666vw] grid grid-rows-subgrid row-span-2 h-full gap-4 rounded-2xl p-4 md:gap-6 lg:gap-8 md:rounded-4xl md:p-6 lg:p-8 overflow-hidden">
-              <div className="relative aspect-video shrink-0 min-h-[120px] w-full overflow-hidden rounded-xl flex-1 h-full">
+            <article className="bg-surface-875 3xl:gap-[1.666vw] 3xl:rounded-[1.666vw] 3xl:p-[1.666vw] grid grid-rows-subgrid row-span-2 h-full gap-4 rounded-2xl p-4 md:gap-6 lg:gap-8 md:rounded-4xl md:p-6 lg:p-8 overflow-hidden">
+              <div className="relative aspect-video shrink-0 min-h-30 w-full overflow-hidden rounded-xl flex-1 h-full">
                 <Image
                   src={card.image}
-                  alt={card.title}
+                  alt={`Ilustração de ${card.title}`}
                   fill
                   sizes="(max-width: 767px) 100vw, (max-width: 1535px) 50vw, 672px"
                   quality={100}
@@ -112,25 +112,23 @@ const SolutionsCards = () => {
                 />
               </div>
 
-              <div className="3xl:space-y-[1.666vw] space-y-4 md:space-y-6 flex flex-col justify-start">
-                <div className="3xl:gap-[.834vw] flex flex-col items-center gap-3">
-                  <p className="text-gradient text-gradient-brand 3xl:text-[.833vw] w-max text-center text-[clamp(.75rem,2.5vw,1rem)] font-semibold uppercase">
-                    {card.category}
-                  </p>
+              <div className="flex flex-col justify-start items-center">
+                <p className="text-gradient text-gradient-brand 3xl:text-[.833vw] w-max text-center text-[clamp(.75rem,2.5vw,1rem)] font-semibold uppercase">
+                  {card.category}
+                </p>
 
-                  <h3 className="text-gradient text-gradient-white 3xl:text-[1.666vw] text-center text-xl text-[clamp(1.25rem,4.5vw,2rem)] font-medium">
-                    {card.title}
-                  </h3>
-                </div>
+                <h3 className="text-gradient text-gradient-white 3xl:text-[1.666vw] text-center text-xl text-[clamp(1.25rem,4.5vw,2rem)] font-medium 3xl:mt-[.834vw] mt-3">
+                  {card.title}
+                </h3>
 
-                <p className="3xl:text-[1.25vw] text-center text-[clamp(1rem,3.5vw,1.5rem)] text-white/70">
+                <p className="3xl:text-[1.25vw] text-center text-[clamp(1rem,3.5vw,1.5rem)] text-white/70 3xl:mt-[1.666vw] mt-4 md:mt-6 ">
                   {card.description}
                 </p>
               </div>
-            </div>
-          </article>
+            </article>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
