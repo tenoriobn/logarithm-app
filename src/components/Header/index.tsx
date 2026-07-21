@@ -21,7 +21,7 @@ const Header = () => {
   );
 
   return (
-    <header ref={headerRef} className="3xl:p-[1.666vw] absolute z-1 flex w-full items-center justify-between p-4 md:p-8">
+    <header ref={headerRef} className="3xl:p-[1.666vw] absolute z-999 flex w-full items-center justify-between p-4 md:p-8">
       <div className="header-anim opacity-0">
         <Image
           src="/icons/logo.png"
