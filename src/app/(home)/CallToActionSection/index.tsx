@@ -3,8 +3,6 @@ import { useRef } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import Link from 'next/link';
 import ArrowIcon from 'public/icons/arrow.svg';
-import SectionDescription from 'src/components/SectionDescription';
-import SectionTitle from 'src/components/SectionTitle';
 
 const CallToActionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -47,24 +45,9 @@ const CallToActionSection = () => {
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,31,41)_5%,rgba(14,31,41,0)_30%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_98%)]"
       />
 
-      <header className="3xl:space-y-[0.833vw] space-y-4 z-2">
-        <SectionTitle
-          id="cta-section-title"
-          aria-describedby="cta-section-description"
-          className="animate-item opacity-0"
-        >
-          A próxima lógica pode <br className="xl:hidden" /> ser a do seu negócio.
-        </SectionTitle>
-
-        <SectionDescription
-          id="cta-section-description"
-          className="3xl:max-w-[50vw] mx-auto max-w-172 xl:max-w-240 animate-item opacity-0"
-        >
-          Cada empresa possui uma realidade diferente. É por isso que construímos
-          soluções sob medida, alinhadas aos desafios, processos e objetivos de cada
-          operação.
-        </SectionDescription>
-      </header>
+      <h2 className="text-gradient text-gradient-white 3xl:text-[2.916vw] text-center text-[clamp(1.5rem,6vw,3.5rem)] font-medium">
+        Vamos construir a próxima transformação?
+      </h2>
 
       <Link
         href="https://wa.me/5591719041?text=Olá!%20Conheci%20a%20Logarithm%20e%20gostaria%20de%20receber%20mais%20informações."
