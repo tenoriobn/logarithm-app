@@ -21,20 +21,23 @@ const Header = () => {
   );
 
   return (
-    <header ref={headerRef} className="3xl:p-[1.666vw] absolute z-999 flex w-full items-center justify-between p-4 md:p-8">
+    <header
+      ref={headerRef}
+      className="3xl:p-[1.666vw] absolute z-999 flex w-full items-center justify-between p-4 md:p-8"
+    >
       <div className="header-anim opacity-0">
         <Image
           src="/icons/logo.png"
           width={24}
           height={32}
-          className="w-6 h-8 3xl:h-[1.666vw] 3xl:w-[1.25vw]"
+          className="3xl:h-[1.666vw] 3xl:w-[1.25vw] h-8 w-6"
           alt="Logo do tipo"
         />
       </div>
 
-      <button className="header-anim opacity-0 3xl:max-w-[2.916vw] 3xl:gap-[.417vw] flex w-full max-w-14 flex-col gap-1.5">
-        <span className="bg-surface-400 3xl:h-[.209vw] relative h-0.75 rounded-full" />
-        <span className="bg-surface-400 3xl:h-[.209vw] relative h-0.75 rounded-full" />
+      <button className="header-anim 3xl:max-w-[2.916vw] 3xl:gap-[.313vw] flex w-full max-w-14 flex-col gap-1.5 opacity-0">
+        <span className="bg-surface-400 3xl:h-[.157vw] relative h-0.75 rounded-full" />
+        <span className="bg-surface-400 3xl:h-[.157vw] relative h-0.75 rounded-full" />
       </button>
     </header>
   );

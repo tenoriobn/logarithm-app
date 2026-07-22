@@ -38,23 +38,23 @@ const HeroSection = () => {
     <section
       ref={sectionRef}
       aria-labelledby="hero-section-title"
-      className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[6.667vw] relative flex min-h-svh flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24"
+      className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[4.998vw] relative flex min-h-svh flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24"
     >
       <HeroBackground />
 
-      <header className="max-lg:gap-4 z-2 flex w-full flex-col items-center @container lg:items-end">
+      <header className="@container z-2 flex w-full flex-col items-center max-lg:gap-4 lg:items-end">
         <SectionTitle
           ref={titleRef}
           id="hero-section-title"
           aria-describedby="hero-section-description"
-          className="uppercase font-aboro leading-[16.32cqw]! w-full text-[16.32cqw]! opacity-0"
+          className="font-aboro w-full text-[16.32cqw]! leading-[16.32cqw]! uppercase opacity-0"
         >
           logarithm
         </SectionTitle>
 
         <SectionDescription
           id="hero-section-description"
-          className="max-sm:max-w-[288px] w-max opacity-0"
+          className="w-max opacity-0 max-sm:max-w-[288px]"
           ref={descriptionRef}
         >
           Entenda como transformamos
