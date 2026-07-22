@@ -40,14 +40,14 @@ const CallToActionSection = () => {
     <section
       ref={sectionRef}
       aria-labelledby="cta-section-title"
-      className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] flex min-h-svh lg:min-h-[calc(100svh-162px)] 3xl:min-h-[calc(100svh-8.434vw)] lg:pt-40.5 3xl:pt-[8.434vw] flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8 relative"
+      className="bg-surface-950 3xl:gap-[1.666vw] 3xl:p-[1.666vw] 3xl:min-h-[calc(100svh-8.434vw)] 3xl:pt-[8.434vw] relative flex min-h-svh flex-col items-center justify-center gap-4 p-4 md:gap-8 md:p-8 lg:min-h-[calc(100svh-162px)] lg:pt-40.5"
     >
       <div
         aria-hidden
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,31,41)_5%,rgba(14,31,41,0)_30%,rgba(14,31,41,0.13)_80%,rgba(14,31,41)_98%)]"
       />
 
-      <header className="3xl:space-y-[0.833vw] space-y-4 z-2">
+      <header className="3xl:space-y-[0.833vw] z-2 space-y-4">
         <SectionTitle
           id="cta-section-title"
           aria-describedby="cta-section-description"
@@ -58,11 +58,10 @@ const CallToActionSection = () => {
 
         <SectionDescription
           id="cta-section-description"
-          className="3xl:max-w-[50vw] mx-auto max-w-172 xl:max-w-240 animate-item opacity-0"
+          className="3xl:max-w-[50vw] animate-item mx-auto max-w-172 opacity-0 xl:max-w-240"
         >
-          Cada empresa possui uma realidade diferente. É por isso que construímos
-          soluções sob medida, alinhadas aos desafios, processos e objetivos de cada
-          operação.
+          Cada empresa possui uma realidade diferente. É por isso que construímos soluções sob
+          medida, alinhadas aos desafios, processos e objetivos de cada operação.
         </SectionDescription>
       </header>
 
@@ -70,7 +69,7 @@ const CallToActionSection = () => {
         href="https://wa.me/5591719041?text=Olá!%20Conheci%20a%20Logarithm%20e%20gostaria%20de%20receber%20mais%20informações."
         target="_blank"
         rel="noopener noreferrer"
-        className="border-brand-600 bg-button-brand button-brand-animated transition-default 3xl:gap-[0.833vw] 3xl:p-[.417vw] 3xl:pl-[1.666vw] 3xl:text-[1.25vw] animate-item flex items-center justify-center gap-4 rounded-full border p-2 pl-8 font-medium text-white/75 opacity-0 active:scale-90 md:text-2xl z-2"
+        className="border-brand-600 bg-button-brand btn-animated-gradient transition-default 3xl:gap-[0.833vw] 3xl:p-[.417vw] 3xl:pl-[1.666vw] 3xl:text-[1.25vw] animate-item z-2 flex items-center justify-center gap-4 rounded-full border p-2 pl-8 font-medium text-white/75 opacity-0 shadow-[0px_4px_24px_0px_rgba(54,123,162,0.12)] active:scale-90! md:text-2xl"
       >
         <span>Iniciar uma conversa</span>
 

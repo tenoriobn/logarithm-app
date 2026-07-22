@@ -59,15 +59,15 @@ const Footer = () => {
       <div className="flex items-center justify-between gap-4 max-lg:flex-col">
         <div className="max-xs:flex-col 3xl:gap-[0.833vw] flex gap-2 md:gap-4">
           <div className="animate-item opacity-0">
-            <button className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90">
+            <Link href="/politica-de-privacidade" className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90">
               Política de Privacidade
-            </button>
+            </Link>
           </div>
 
           <div className="animate-item opacity-0">
-            <button className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90">
+            <Link href="/exclusao-de-dados" className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90">
               Exclusão de Dados
-            </button>
+            </Link>
           </div>
         </div>
 
