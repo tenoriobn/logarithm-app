@@ -6,7 +6,7 @@ import SmoothScrolling from 'src/components/SmoothScrollProvider';
 import Footer from 'src/components/Footer';
 import CallToActionSection from './CallToActionSection';
 
-export default function Home() {
+export default function Sobre() {
   return (
     <SmoothScrolling>
       <Header />

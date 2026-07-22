@@ -38,7 +38,7 @@ const HeroSection = () => {
     <section
       ref={sectionRef}
       aria-labelledby="hero-section-title"
-      className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[4.998vw] relative flex min-h-svh flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24"
+      className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[4.998vw] slide-section relative z-10 flex h-full min-h-svh w-full flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24"
     >
       <HeroBackground />
 
