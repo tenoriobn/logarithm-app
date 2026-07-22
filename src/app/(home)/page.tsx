@@ -315,7 +315,7 @@ export default function Home() {
               href="https://wa.me/5591719041?text=Olá!%20Conheci%20a%20Logarithm%20e%20gostaria%20de%20receber%20mais%20informações."
               target="_blank"
               rel="noopener noreferrer"
-              className="border-brand-600 bg-button-brand button-brand-animated transition-default 3xl:gap-[0.833vw] 3xl:p-[.417vw] 3xl:pl-[1.666vw] 3xl:text-[1.25vw] animate-item z-2 flex items-center justify-center gap-4 rounded-full border p-2 pl-8 font-medium text-white/75 opacity-0 active:scale-90! md:text-2xl"
+              className="border-brand-500/25 bg-button-surface transition-default [--btn-hover-bg:var(--color-surface-850)] 3xl:gap-[0.833vw] 3xl:p-[.417vw] 3xl:pl-[1.666vw] 3xl:text-[1.25vw] animate-item btn-animated-gradient z-2 flex items-center justify-center gap-4 rounded-full border p-2 pl-8 font-medium text-white/75 opacity-0 shadow-[0px_4px_24px_0px_rgba(54,123,162,0.12)] active:scale-90! md:text-2xl"
             >
               <span>Iniciar uma conversa</span>
 
