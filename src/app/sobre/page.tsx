@@ -3,10 +3,9 @@ import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import Header from 'src/components/Header';
 import SmoothScrolling from 'src/components/SmoothScrollProvider';
-import Footer from 'src/components/Footer';
-import CallToActionSection from './CallToActionSection';
+import AboutPageFooter from './AboutPageFooter';
 
-export default function Home() {
+export default function Sobre() {
   return (
     <SmoothScrolling>
       <Header />
@@ -15,10 +14,9 @@ export default function Home() {
         <HeroSection />
         <SolutionsSection />
         <PrinciplesSection />
-        <CallToActionSection />
       </main>
 
-      <Footer />
+      <AboutPageFooter />
     </SmoothScrolling>
   );
 }
