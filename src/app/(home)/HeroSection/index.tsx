@@ -12,24 +12,82 @@ const HeroSection = () => {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.5 }, delay: 0.5 });
+      // Duração ajustada para ser premium mas responsiva
+      const tl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
 
       if (titleRef.current) {
-        tl.fromTo(
-          titleRef.current,
-          { opacity: 0, y: 80, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1 }
-        );
+        // Inicializa com blur e invisível
+        gsap.set(titleRef.current, { autoAlpha: 0, filter: 'blur(8px)' });
+
+        tl.to(titleRef.current, {
+          autoAlpha: 1,
+          filter: 'blur(0px)',
+          duration: 1.8,
+          scrambleText: {
+            text: 'logarithm',
+            chars: 'upperAndLowerCase',
+            revealDelay: 0.2,
+            tweenLength: false,
+          },
+          force3D: true,
+        });
       }
 
       if (descriptionRef.current) {
-        tl.fromTo(
+        gsap.set(descriptionRef.current, { autoAlpha: 0, filter: 'blur(6px)' });
+
+        tl.to(
           descriptionRef.current,
-          { opacity: 0, x: -40 },
-          { opacity: 1, x: 0, duration: 1.2 },
-          '-=1'
+          { autoAlpha: 1, filter: 'blur(0px)', duration: 1.5, force3D: true },
+          '-=1.2' // Inicia antes do título terminar
         );
+
+        const descSpans = descriptionRef.current.querySelectorAll('.desc-scramble');
+        descSpans.forEach((span) => {
+          const originalText = span.getAttribute('data-text') || '';
+          tl.to(
+            span,
+            {
+              scrambleText: {
+                text: originalText,
+                chars: 'upperAndLowerCase',
+                revealDelay: 0.1,
+                tweenLength: false,
+              },
+              duration: 1.5,
+              ease: 'power3.inOut',
+            },
+            '<' // Sincroniza com o fade-in da descrição
+          );
+        });
       }
+
+      // --- Observer para resetar e reanimar a seção ao sair e voltar ---
+      let wasActive = true; // Na primeira carga, já começa ativa
+
+      const observer = new MutationObserver(() => {
+        if (!sectionRef.current) {
+          return;
+        }
+        const style = sectionRef.current.style;
+
+        // Verifica se a seção está visível (GSAP autoAlpha controla opacity e visibility)
+        const isVisible = style.visibility !== 'hidden' && style.opacity !== '0';
+
+        if (isVisible && !wasActive) {
+          wasActive = true;
+          tl.restart(); // Refaz a animação de scramble e blur ao entrar
+        } else if (!isVisible && wasActive && style.opacity === '0') {
+          wasActive = false;
+          tl.pause(0); // Reseta silenciosamente quando termina de sumir
+        }
+      });
+
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current, { attributes: true, attributeFilter: ['style'] });
+      }
+
+      return () => observer.disconnect();
     },
     { scope: sectionRef }
   );
@@ -57,7 +115,13 @@ const HeroSection = () => {
           className="w-max opacity-0 max-sm:max-w-[288px]"
           ref={descriptionRef}
         >
-          A lógica por trás de <br className="sm:hidden" /> grandes transformações.
+          <span className="desc-scramble" data-text="A lógica por trás de ">
+            A lógica por trás de{' '}
+          </span>
+          <br className="sm:hidden" />
+          <span className="desc-scramble" data-text="grandes transformações.">
+            grandes transformações.
+          </span>
         </SectionDescription>
       </header>
     </section>

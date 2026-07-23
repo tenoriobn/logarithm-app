@@ -30,6 +30,25 @@ export default function Home() {
     const outers = sections.map((s) => s.querySelector('.outer')).filter(Boolean);
     const inners = sections.map((s) => s.querySelector('.inner')).filter(Boolean);
 
+    const getSectionType = (sec: HTMLElement | null, idx: number) => {
+      if (!sec) {
+        return 'text';
+      }
+      if (idx === 0) {
+        return 'hero';
+      }
+      if (idx === 2) {
+        return 'white';
+      }
+      if (idx === sections.length - 1) {
+        return 'footer';
+      }
+      if (sec.innerHTML.includes('conic-gradient')) {
+        return 'services';
+      }
+      return 'text';
+    };
+
     gsap.set(outers, { yPercent: 100 });
     gsap.set(inners, { yPercent: -100 });
     gsap.set(sections, {
@@ -57,10 +76,13 @@ export default function Home() {
       const currentSection = currentIndex >= 0 ? sections[currentIndex] : null;
       const nextSection = sections[index];
 
+      const currentType =
+        currentIndex >= 0 ? getSectionType(currentSection, currentIndex) : 'unknown';
+      const nextType = getSectionType(nextSection, index);
+      const isDifferentBg = currentIndex >= 0 && currentType !== nextType;
+
       const nextOuter = nextSection?.querySelector('.outer');
       const nextInner = nextSection?.querySelector('.inner');
-      const currentOuter = currentSection?.querySelector('.outer');
-      const currentInner = currentSection?.querySelector('.inner');
 
       if (currentSection) {
         gsap.set(currentSection, { zIndex: 0 });
@@ -71,21 +93,7 @@ export default function Home() {
       const isEnteringWhiteSection = index === 2 && (currentIndex === 1 || currentIndex === 3);
       const isLeavingWhiteSection = currentIndex === 2 && (index === 1 || index === 3);
 
-      if (index === 0 && fromTop && currentSection && currentOuter && currentInner) {
-        // Quando voltamos para a HeroSection (rolando para cima),
-        // não deslizamos a HeroSection para baixo. Em vez disso,
-        // deslizamos a seção atual para baixo, revelando a HeroSection embaixo.
-        gsap.set(currentSection, { zIndex: 2 });
-        gsap.set(nextSection, { zIndex: 1 });
-
-        tl.to(
-          [currentOuter, currentInner],
-          {
-            yPercent: (i) => (i ? -100 : 100),
-          },
-          0
-        ).set(currentSection, { autoAlpha: 0 });
-      } else if (isEnteringWhiteSection && currentSection) {
+      if (isEnteringWhiteSection && currentSection) {
         gsap.set(currentSection, { zIndex: 2 });
         gsap.set(nextSection, { zIndex: 1 });
         if (nextOuter && nextInner) {
@@ -100,6 +108,26 @@ export default function Home() {
         }
         // Faz o fade out suave da tela branca no início (0 a 0.5s) revelando o texto gigante branco encolhendo por baixo
         tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 0);
+      } else if (isDifferentBg && currentSection) {
+        // Transição premium suave entre seções de fundos diferentes (corte não seco)
+        if (fromTop) {
+          // Rolando para cima: próxima tela (acima) surge em fade por cima da atual
+          gsap.set(currentSection, { zIndex: 1 });
+          gsap.set(nextSection, { zIndex: 2, autoAlpha: 0 });
+          if (nextOuter && nextInner) {
+            gsap.set([nextOuter, nextInner], { yPercent: 0 });
+          }
+          tl.to(nextSection, { autoAlpha: 1, duration: 1.25, ease: 'power2.inOut' }, 0);
+          tl.set(currentSection, { autoAlpha: 0 }, 1.25);
+        } else {
+          // Rolando para baixo: tela atual (acima) desaparece em fade revelando a próxima (abaixo)
+          gsap.set(currentSection, { zIndex: 2 });
+          gsap.set(nextSection, { zIndex: 1 });
+          if (nextOuter && nextInner) {
+            gsap.set([nextOuter, nextInner], { yPercent: 0 });
+          }
+          tl.to(currentSection, { autoAlpha: 0, duration: 1.25, ease: 'power2.inOut' }, 0);
+        }
       } else {
         // Transição normal
         if (nextOuter && nextInner) {
@@ -344,7 +372,7 @@ export default function Home() {
           E, sem <span className="zoom-origin">e</span>strutura, <br />
           a complexidade <br className="xs:hidden" /> cresce junto.
         </TextSection>
-        <TextSection>É aqui que começamos...</TextSection>;
+        <TextSection>É aqui que começamos...</TextSection>
         <ServicesSlide />
         <TextSection>
           Cada negócio possui <br className="md:hidden" /> uma lógica própria.

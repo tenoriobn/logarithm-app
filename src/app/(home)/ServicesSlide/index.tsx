@@ -32,11 +32,9 @@ const ServicesSlide = () => {
                   {slide.title}
                 </SectionTitle>
 
-                <SectionDescription className="animate-item 3xl:mb-[3.332vw] 3xl:max-w-[53.93vw] z-2 mb-4 max-w-264 md:mb-16">
+                <SectionDescription className="animate-item 3xl:max-w-[53.93vw] z-2 max-w-264">
                   {slide.description}
                 </SectionDescription>
-
-                <div className="3xl:h-[1.25vw] h-4 w-full shrink-0 md:h-6" aria-hidden="true" />
               </div>
             </div>
           </div>

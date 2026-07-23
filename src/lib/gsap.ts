@@ -6,7 +6,8 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitText from 'gsap/SplitText';
 import { Observer } from 'gsap/Observer';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrollToPlugin, Observer);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrollToPlugin, Observer, ScrambleTextPlugin);
 
-export { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrollToPlugin, Observer };
+export { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrollToPlugin, Observer, ScrambleTextPlugin };
