@@ -5,7 +5,7 @@ import { gsap, useGSAP, Observer } from 'src/lib/gsap';
 import HeroSection from './HeroSection';
 import ServicesSlide from './ServicesSlide';
 import TextSection from 'src/components/TextSection';
-import FooterContent from './FooterContent';
+import HomePageFooter from './HomePageFooter';
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
@@ -238,9 +238,7 @@ export default function Home() {
         </TextSection>
       </main>
 
-      <footer ref={footerRef} className="slide-section z-0">
-        <FooterContent />
-      </footer>
+      <HomePageFooter ref={footerRef} />
     </>
   );
 }

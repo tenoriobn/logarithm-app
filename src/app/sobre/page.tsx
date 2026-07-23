@@ -3,8 +3,7 @@ import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import Header from 'src/components/Header';
 import SmoothScrolling from 'src/components/SmoothScrollProvider';
-import Footer from 'src/components/Footer';
-import CallToActionSection from './CallToActionSection';
+import AboutPageFooter from './AboutPageFooter';
 
 export default function Sobre() {
   return (
@@ -15,10 +14,9 @@ export default function Sobre() {
         <HeroSection />
         <SolutionsSection />
         <PrinciplesSection />
-        <CallToActionSection />
       </main>
 
-      <Footer />
+      <AboutPageFooter />
     </SmoothScrolling>
   );
 }
