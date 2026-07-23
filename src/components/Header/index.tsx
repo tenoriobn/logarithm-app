@@ -1,9 +1,11 @@
 'use client';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
+import Menu from './Menu';
 
 const Header = () => {
+  const [isMenu, setIsMenu] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -35,10 +37,23 @@ const Header = () => {
         />
       </div>
 
-      <button className="header-anim 3xl:max-w-[2.916vw] 3xl:gap-[.313vw] flex w-full max-w-14 flex-col gap-1.5 opacity-0">
-        <span className="bg-surface-400 3xl:h-[.157vw] relative h-0.75 rounded-full" />
-        <span className="bg-surface-400 3xl:h-[.157vw] relative h-0.75 rounded-full" />
+      <button
+        onClick={() => setIsMenu(!isMenu)}
+        className="header-anim 3xl:max-w-[2.083vw] 3xl:h-[0.627vw] relative z-50 flex h-3 w-full max-w-10 flex-col justify-center opacity-0 md:max-w-12"
+      >
+        <span
+          className={`bg-surface-400 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
+            isMenu ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0'
+          }`}
+        />
+        <span
+          className={`bg-surface-400 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
+            isMenu ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-0'
+          }`}
+        />
       </button>
+
+      <Menu isMenu={isMenu} setIsMenu={setIsMenu} />
     </header>
   );
 };
