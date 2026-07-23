@@ -79,7 +79,7 @@ export default function Home() {
       const currentType =
         currentIndex >= 0 ? getSectionType(currentSection, currentIndex) : 'unknown';
       const nextType = getSectionType(nextSection, index);
-      const isDifferentBg = currentIndex >= 0 && currentType !== nextType;
+      const isDifferentBg = currentIndex >= 0 && (currentType !== nextType || (currentType === 'services' && nextType === 'services'));
 
       const nextOuter = nextSection?.querySelector('.outer');
       const nextInner = nextSection?.querySelector('.inner');
@@ -332,6 +332,14 @@ export default function Home() {
           },
           1.2
         ); // Cascata: inicia 0.2s depois do texto
+      }
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('sectionTransition', {
+            detail: { duration: 1.25, currentType, nextType }
+          })
+        );
       }
 
       currentIndex = index;
