@@ -5,7 +5,7 @@ import ArrowIcon from 'public/icons/arrow.svg';
 
 const HomePageFooter = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <footer ref={ref} className="slide-section z-0">
+    <footer ref={ref} className="slide-section z-0 fixed inset-0 invisible">
       <div className="outer bg-surface-950 xs:grid-rows-[1fr_auto_1fr] 3xl:px-[1.666vw] 3xl:py-[4.998vw] 3xl:pb-[1.666vw]! relative grid h-full w-full grid-rows-[1fr_auto] overflow-hidden px-4 py-16 pb-4! md:px-8 md:py-24 md:pb-8!">
         <div
           aria-hidden
