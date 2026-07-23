@@ -68,8 +68,8 @@ export default function Home() {
 
       gsap.set(nextSection, { autoAlpha: 1, zIndex: 1, visibility: 'visible' });
 
-      const isGrowTransition = currentIndex === 1 && index === 2;
-      const isShrinkTransition = currentIndex === 2 && index === 1;
+      const isEnteringWhiteSection = index === 2 && (currentIndex === 1 || currentIndex === 3);
+      const isLeavingWhiteSection = currentIndex === 2 && (index === 1 || index === 3);
 
       if (index === 0 && fromTop && currentSection && currentOuter && currentInner) {
         // Quando voltamos para a HeroSection (rolando para cima),
@@ -85,14 +85,14 @@ export default function Home() {
           },
           0
         ).set(currentSection, { autoAlpha: 0 });
-      } else if (isGrowTransition && currentSection) {
+      } else if (isEnteringWhiteSection && currentSection) {
         gsap.set(currentSection, { zIndex: 2 });
         gsap.set(nextSection, { zIndex: 1 });
         if (nextOuter && nextInner) {
           gsap.set([nextOuter, nextInner], { yPercent: 0 });
         }
         tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 1.0);
-      } else if (isShrinkTransition && currentSection) {
+      } else if (isLeavingWhiteSection && currentSection) {
         gsap.set(currentSection, { zIndex: 2 }); // Mantém a tela branca por cima inicialmente
         gsap.set(nextSection, { zIndex: 1 }); // Tela escura entra por baixo
         if (nextOuter && nextInner) {
@@ -126,7 +126,7 @@ export default function Home() {
       const currentItems = currentIndex >= 0 ? animatedItems[currentIndex] : [];
 
       if (currentHeading) {
-        if (isGrowTransition) {
+        if (isEnteringWhiteSection) {
           let tOrigin = '50% 50%';
           const zoomTarget = currentHeading.querySelector('.zoom-origin');
           if (zoomTarget) {
@@ -161,7 +161,7 @@ export default function Home() {
             },
             0
           );
-        } else if (isShrinkTransition) {
+        } else if (isLeavingWhiteSection) {
           // REMOVIDO: Nenhuma animação no texto filho, deixamos a seção pai dar o fade out suavemente.
           // Isso elimina qualquer possibilidade do navegador bugar e "piscar" o texto de volta.
         } else {
@@ -201,7 +201,7 @@ export default function Home() {
       const items = animatedItems[index];
 
       if (heading) {
-        if (isGrowTransition) {
+        if (isEnteringWhiteSection) {
           tl.fromTo(
             heading,
             {
@@ -220,7 +220,7 @@ export default function Home() {
             },
             0.5
           );
-        } else if (isShrinkTransition) {
+        } else if (isLeavingWhiteSection) {
           // Reversão limpa e garantida:
           // 1. Reseta para 1 temporariamente só para medir
           gsap.set(heading, { scale: 1 });
@@ -341,7 +341,7 @@ export default function Home() {
           Porque crescer <br className="xs:hidden" /> muda tudo
         </TextSection>
         <TextSection>
-          E, sem estrutura, <br />
+          E, sem <span className="zoom-origin">e</span>strutura, <br />
           a complexidade <br className="xs:hidden" /> cresce junto.
         </TextSection>
         <TextSection>É aqui que começamos...</TextSection>;
