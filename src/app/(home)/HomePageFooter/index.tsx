@@ -23,8 +23,14 @@ const HomePageFooter = forwardRef<HTMLElement>((_, ref) => {
 
         <div className="max-xs:hidden" />
 
-        <div className="inner 3xl:gap-[1.666vw] max-xs:mb-4 relative flex w-full flex-col items-center justify-center gap-4 md:gap-8">
-          <h2 className="section-heading text-gradient text-gradient-white 3xl:text-[2.916vw] text-center text-[clamp(1.5rem,6vw,2.25rem)] font-medium md:text-[clamp(2.25rem,4vw,3.5rem)]">
+        <section
+          aria-labelledby="cta-section-title"
+          className="inner 3xl:gap-[1.666vw] max-xs:mb-4 relative flex w-full flex-col items-center justify-center gap-4 md:gap-8"
+        >
+          <h2
+            id="cta-section-title"
+            className="section-heading text-gradient text-gradient-white 3xl:text-[2.916vw] text-center text-[clamp(1.5rem,6vw,2.25rem)] font-medium md:text-[clamp(2.25rem,4vw,3.5rem)]"
+          >
             Vamos construir a próxima transformação?
           </h2>
 
@@ -44,12 +50,12 @@ const HomePageFooter = forwardRef<HTMLElement>((_, ref) => {
               />
             </span>
           </Link>
-        </div>
+        </section>
 
-        <div className="relative self-end">
-          <nav className="3xl:mb-[1.666vw] 3xl:gap-[0.833vw] mb-4 flex justify-center gap-4 md:mb-8 lg:justify-end">
+        <nav aria-label="Redes sociais" className="relative self-end">
+          <ul className="3xl:mb-[1.666vw] 3xl:gap-[0.833vw] mb-4 flex justify-center gap-4 md:mb-8 lg:justify-end">
             {SOCIAL_LINK.map(({ icon: Icon, href, ariaLabel }) => (
-              <div key={ariaLabel} className="animate-item">
+              <li key={ariaLabel} className="animate-item">
                 <Link
                   href={href}
                   target="_blank"
@@ -63,30 +69,30 @@ const HomePageFooter = forwardRef<HTMLElement>((_, ref) => {
                     focusable="false"
                   />
                 </Link>
-              </div>
+              </li>
             ))}
-          </nav>
+          </ul>
 
           <div className="flex items-center justify-between gap-4 max-lg:flex-col">
-            <div className="max-xs:flex-col 3xl:gap-[0.833vw] flex gap-2 md:gap-4">
-              <div className="animate-item">
+            <ul className="max-xs:flex-col 3xl:gap-[0.833vw] flex gap-2 md:gap-4">
+              <li className="animate-item">
                 <Link
                   href="/politica-de-privacidade"
                   className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
                 >
                   Política de Privacidade
                 </Link>
-              </div>
+              </li>
 
-              <div className="animate-item">
+              <li className="animate-item">
                 <Link
                   href="/exclusao-de-dados"
                   className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
                 >
                   Exclusão de Dados
                 </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
 
             <div className="animate-item">
               <small className="3xl:text-[1.042vw] block text-center text-[clamp(1rem,3.5vw,1.25rem)] text-white/75">
@@ -95,7 +101,7 @@ const HomePageFooter = forwardRef<HTMLElement>((_, ref) => {
               </small>
             </div>
           </div>
-        </div>
+        </nav>
       </div>
     </footer>
   );

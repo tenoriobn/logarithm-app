@@ -63,7 +63,10 @@ const AboutPageFooter = () => {
 
       <div className="max-xs:hidden" />
 
-      <div className="inner max-xs:mb-4 relative z-2 flex w-full flex-col items-center justify-center">
+      <section
+        aria-labelledby="cta-section-title"
+        className="inner max-xs:mb-4 relative z-2 flex w-full flex-col items-center justify-center"
+      >
         <SectionTitle
           id="cta-section-title"
           aria-describedby="cta-section-description"
@@ -96,12 +99,15 @@ const AboutPageFooter = () => {
             />
           </span>
         </Link>
-      </div>
+      </section>
 
-      <div className="footer-content-wrapper relative z-2 self-end">
-        <nav className="3xl:mb-[1.666vw] 3xl:gap-[0.833vw] mb-4 flex justify-center gap-4 md:mb-8 lg:justify-end">
+      <nav className="footer-content-wrapper relative z-2 self-end">
+        <ul
+          aria-label="Redes sociais"
+          className="3xl:mb-[1.666vw] 3xl:gap-[0.833vw] mb-4 flex justify-center gap-4 md:mb-8 lg:justify-end"
+        >
           {SOCIAL_LINK.map(({ icon: Icon, href, ariaLabel }) => (
-            <div key={ariaLabel} className="animate-footer-item opacity-0">
+            <li key={ariaLabel} className="animate-footer-item opacity-0">
               <Link
                 href={href}
                 target="_blank"
@@ -115,30 +121,30 @@ const AboutPageFooter = () => {
                   focusable="false"
                 />
               </Link>
-            </div>
+            </li>
           ))}
-        </nav>
+        </ul>
 
         <div className="flex items-center justify-between gap-4 max-lg:flex-col">
-          <div className="max-xs:flex-col 3xl:gap-[0.833vw] flex gap-2 md:gap-4">
-            <div className="animate-footer-item opacity-0">
+          <ul className="max-xs:flex-col 3xl:gap-[0.833vw] flex gap-2 md:gap-4">
+            <li className="animate-footer-item opacity-0">
               <Link
                 href="/politica-de-privacidade"
                 className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
               >
                 Política de Privacidade
               </Link>
-            </div>
+            </li>
 
-            <div className="animate-footer-item opacity-0">
+            <li className="animate-footer-item opacity-0">
               <Link
                 href="/exclusao-de-dados"
                 className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
               >
                 Exclusão de Dados
               </Link>
-            </div>
-          </div>
+            </li>
+          </ul>
 
           <div className="animate-footer-item opacity-0">
             <small className="3xl:text-[1.042vw] block text-center text-[clamp(1rem,3.5vw,1.25rem)] text-white/75">
@@ -147,7 +153,7 @@ const AboutPageFooter = () => {
             </small>
           </div>
         </div>
-      </div>
+      </nav>
     </footer>
   );
 };
