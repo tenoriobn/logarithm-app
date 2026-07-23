@@ -68,6 +68,9 @@ export default function Home() {
 
       gsap.set(nextSection, { autoAlpha: 1, zIndex: 1, visibility: 'visible' });
 
+      const isGrowTransition = currentIndex === 1 && index === 2;
+      const isShrinkTransition = currentIndex === 2 && index === 1;
+
       if (index === 0 && fromTop && currentSection && currentOuter && currentInner) {
         // Quando voltamos para a HeroSection (rolando para cima),
         // não deslizamos a HeroSection para baixo. Em vez disso,
@@ -82,6 +85,21 @@ export default function Home() {
           },
           0
         ).set(currentSection, { autoAlpha: 0 });
+      } else if (isGrowTransition && currentSection) {
+        gsap.set(currentSection, { zIndex: 2 });
+        gsap.set(nextSection, { zIndex: 1 });
+        if (nextOuter && nextInner) {
+          gsap.set([nextOuter, nextInner], { yPercent: 0 });
+        }
+        tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 1.0);
+      } else if (isShrinkTransition && currentSection) {
+        gsap.set(currentSection, { zIndex: 2 }); // Mantém a tela branca por cima inicialmente
+        gsap.set(nextSection, { zIndex: 1 }); // Tela escura entra por baixo
+        if (nextOuter && nextInner) {
+          gsap.set([nextOuter, nextInner], { yPercent: 0 });
+        }
+        // Faz o fade out suave da tela branca no início (0 a 0.5s) revelando o texto gigante branco encolhendo por baixo
+        tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 0);
       } else {
         // Transição normal
         if (nextOuter && nextInner) {
@@ -108,18 +126,58 @@ export default function Home() {
       const currentItems = currentIndex >= 0 ? animatedItems[currentIndex] : [];
 
       if (currentHeading) {
-        tl.to(
-          currentHeading,
-          {
-            autoAlpha: 0,
-            scale: 1.08,
-            y: -20 * dFactor,
-            filter: 'blur(6px)',
-            duration: 1,
-            ease: 'power2.inOut',
-          },
-          0
-        ); // Inicia imediatamente junto com a transição de seção
+        if (isGrowTransition) {
+          let tOrigin = '50% 50%';
+          const zoomTarget = currentHeading.querySelector('.zoom-origin');
+          if (zoomTarget) {
+            // Em vez de pegar o centro exato (que cai no buraco do 'a'),
+            // vamos deslocar para pegar a haste direita e sólida da letra.
+            const hRect = currentHeading.getBoundingClientRect();
+            const targetRect = zoomTarget.getBoundingClientRect();
+            const strokeOffsetX = targetRect.width * 0.8; // 85% para a direita (haste do 'a')
+            const strokeOffsetY = targetRect.height * 0.5; // 50% na altura
+
+            const centerX = targetRect.left + strokeOffsetX - hRect.left;
+            const centerY = targetRect.top + strokeOffsetY - hRect.top;
+
+            const ox = (centerX / hRect.width) * 100;
+            const oy = (centerY / hRect.height) * 100;
+            tOrigin = `${ox}% ${oy}%`;
+          }
+
+          // Cálculo dinâmico para garantir que a escala seja suficiente para preencher
+          // qualquer tamanho de tela, baseado na largura da viewport.
+          // Assumindo um traço fino de ~2px, scale de (window.innerWidth) garante cobertura total.
+          const maxScale = typeof window !== 'undefined' ? window.innerWidth * 1.5 : 2500;
+
+          tl.to(
+            currentHeading,
+            {
+              scale: maxScale,
+              duration: 1.5,
+              ease: 'power3.inOut',
+              transformOrigin: tOrigin,
+              force3D: false, // CRUCIAL: false evita o limite de textura da GPU (que fazia a letra sumir em zooms altos)
+            },
+            0
+          );
+        } else if (isShrinkTransition) {
+          // REMOVIDO: Nenhuma animação no texto filho, deixamos a seção pai dar o fade out suavemente.
+          // Isso elimina qualquer possibilidade do navegador bugar e "piscar" o texto de volta.
+        } else {
+          tl.to(
+            currentHeading,
+            {
+              autoAlpha: 0,
+              scale: 1.08,
+              y: -20 * dFactor,
+              filter: 'blur(6px)',
+              duration: 1,
+              ease: 'power2.inOut',
+            },
+            0
+          ); // Inicia imediatamente junto com a transição de seção
+        }
       }
 
       if (currentItems.length > 0) {
@@ -143,24 +201,87 @@ export default function Home() {
       const items = animatedItems[index];
 
       if (heading) {
-        tl.fromTo(
-          heading,
-          {
-            autoAlpha: 0,
-            scale: 1.08,
-            y: 20 * dFactor, // Respeita a direção do scroll
-            filter: 'blur(6px)',
-          },
-          {
+        if (isGrowTransition) {
+          tl.fromTo(
+            heading,
+            {
+              autoAlpha: 0,
+              scale: 0.9,
+              y: 30,
+              filter: 'blur(6px)',
+            },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              y: 0,
+              filter: 'blur(0px)',
+              duration: 1.1,
+              ease: 'power2.out',
+            },
+            0.5
+          );
+        } else if (isShrinkTransition) {
+          // Reversão limpa e garantida:
+          // 1. Reseta para 1 temporariamente só para medir
+          gsap.set(heading, { scale: 1 });
+
+          let tOrigin = '50% 50%';
+          const zoomTarget = heading.querySelector('.zoom-origin');
+          if (zoomTarget) {
+            const hRect = heading.getBoundingClientRect();
+            const targetRect = zoomTarget.getBoundingClientRect();
+            const strokeOffsetX = targetRect.width * 0.8;
+            const strokeOffsetY = targetRect.height * 0.5;
+
+            const centerX = targetRect.left + strokeOffsetX - hRect.left;
+            const centerY = targetRect.top + strokeOffsetY - hRect.top;
+
+            const ox = (centerX / hRect.width) * 100;
+            const oy = (centerY / hRect.height) * 100;
+            tOrigin = `${ox}% ${oy}%`;
+          }
+
+          const maxScale = typeof window !== 'undefined' ? window.innerWidth * 1.5 : 2500;
+
+          // 2. Trava no estado gigante BRANCO *antes* da timeline começar, para o usuário não ver frame vazado
+          gsap.set(heading, {
+            scale: maxScale,
+            transformOrigin: tOrigin,
             autoAlpha: 1,
-            scale: 1,
-            y: 0,
-            filter: 'blur(0px)',
-            duration: 1.1,
-            ease: 'power2.out',
-          },
-          1
-        );
+            filter: 'none',
+          });
+
+          // 3. Anima encolhendo suavemente
+          tl.to(
+            heading,
+            {
+              scale: 1,
+              duration: 1.5,
+              ease: 'power3.inOut',
+              force3D: false, // 2D nativo infinito
+            },
+            0
+          );
+        } else {
+          tl.fromTo(
+            heading,
+            {
+              autoAlpha: 0,
+              scale: 1.08,
+              y: 20 * dFactor, // Respeita a direção do scroll
+              filter: 'blur(6px)',
+            },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              y: 0,
+              filter: 'blur(0px)',
+              duration: 1.1,
+              ease: 'power2.out',
+            },
+            1
+          );
+        }
       }
 
       if (items.length > 0) {
@@ -212,7 +333,8 @@ export default function Home() {
       <main ref={mainRef} className="relative h-svh w-full overflow-hidden">
         <HeroSection />
         <TextSection hasMixBlendScreen={false}>
-          Toda empresa <br className="md:hidden" /> pode crescer. <br />
+          Toda empres<span className="zoom-origin">a</span> <br className="md:hidden" /> pode
+          crescer. <br />
           Mas poucas estão <br className="md:hidden" /> preparadas para isso.
         </TextSection>
         <TextSection variant="light">
