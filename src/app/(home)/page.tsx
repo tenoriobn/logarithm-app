@@ -79,7 +79,9 @@ export default function Home() {
       const currentType =
         currentIndex >= 0 ? getSectionType(currentSection, currentIndex) : 'unknown';
       const nextType = getSectionType(nextSection, index);
-      const isDifferentBg = currentIndex >= 0 && (currentType !== nextType || (currentType === 'services' && nextType === 'services'));
+      const isDifferentBg =
+        currentIndex >= 0 &&
+        (currentType !== nextType || (currentType === 'services' && nextType === 'services'));
 
       const nextOuter = nextSection?.querySelector('.outer');
       const nextInner = nextSection?.querySelector('.inner');
@@ -337,7 +339,7 @@ export default function Home() {
       if (typeof window !== 'undefined') {
         window.dispatchEvent(
           new CustomEvent('sectionTransition', {
-            detail: { duration: 1.25, currentType, nextType }
+            detail: { duration: 1.25, currentType, nextType },
           })
         );
       }
@@ -368,7 +370,7 @@ export default function Home() {
 
       <main ref={mainRef} className="relative h-svh w-full overflow-hidden">
         <HeroSection />
-        <TextSection hasMixBlendScreen={false}>
+        <TextSection>
           Toda empres<span className="zoom-origin">a</span> <br className="md:hidden" /> pode
           crescer. <br />
           Mas poucas estão <br className="md:hidden" /> preparadas para isso.
