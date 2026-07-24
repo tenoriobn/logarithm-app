@@ -1,12 +1,23 @@
 'use client';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import Menu from './Menu';
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleTransition = (e: Event) => {
+      const customEvent = e as CustomEvent<{ nextType: string }>;
+      setIsLightMode(customEvent.detail?.nextType === 'white');
+    };
+
+    window.addEventListener('sectionTransition', handleTransition);
+    return () => window.removeEventListener('sectionTransition', handleTransition);
+  }, []);
 
   useGSAP(
     () => {
@@ -21,6 +32,8 @@ const Header = () => {
     },
     { scope: headerRef }
   );
+
+  const spanColor = !isMenu && isLightMode ? 'bg-surface-950' : 'bg-surface-400';
 
   return (
     <header
@@ -37,21 +50,23 @@ const Header = () => {
         />
       </div>
 
-      <button
-        onClick={() => setIsMenu(!isMenu)}
-        className="header-anim 3xl:max-w-[2.083vw] 3xl:h-[0.627vw] relative z-50 flex h-3 w-full max-w-10 flex-col justify-center opacity-0 md:max-w-12"
-      >
-        <span
-          className={`bg-surface-400 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
-            isMenu ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0'
-          }`}
-        />
-        <span
-          className={`bg-surface-400 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
-            isMenu ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-0'
-          }`}
-        />
-      </button>
+      <div className="header-anim relative z-50 flex w-10 items-center justify-center opacity-0 md:w-12 3xl:w-[2.083vw]">
+        <button
+          onClick={() => setIsMenu(!isMenu)}
+          className="3xl:h-[0.627vw] relative z-50 flex h-3 w-full flex-col justify-center opacity-75 transition-all duration-300 hover:opacity-100 active:scale-90"
+        >
+          <span
+            className={`${spanColor} 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
+              isMenu ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0'
+            }`}
+          />
+          <span
+            className={`${spanColor} 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${
+              isMenu ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-0'
+            }`}
+          />
+        </button>
+      </div>
 
       <Menu isMenu={isMenu} setIsMenu={setIsMenu} />
     </header>
