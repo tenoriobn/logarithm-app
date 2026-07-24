@@ -50,7 +50,7 @@ const Header = () => {
         />
       </div>
 
-      <div className="header-anim relative z-50 flex w-10 items-center justify-center opacity-0 md:w-12 3xl:w-[2.083vw]">
+      <div className="header-anim 3xl:w-[2.499vw] relative z-50 flex w-10 items-center justify-center opacity-0 md:w-12">
         <button
           onClick={() => setIsMenu(!isMenu)}
           className="3xl:h-[0.627vw] relative z-50 flex h-3 w-full flex-col justify-center opacity-75 transition-all duration-300 hover:opacity-100 active:scale-90"

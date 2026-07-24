@@ -1,10 +1,6 @@
 import type { TextSectionProps } from './textSection.type';
 
-export default function TextSection({
-  children,
-  variant = 'dark',
-  hasMixBlendScreen = true,
-}: TextSectionProps) {
+export default function TextSection({ children, variant = 'dark' }: TextSectionProps) {
   const isLight = variant === 'light';
 
   return (
@@ -17,16 +13,16 @@ export default function TextSection({
         >
           <div
             aria-hidden
-            className={`pointer-events-none absolute -top-12 -left-12 h-47 w-47 rounded-full opacity-80 blur-[80px] ${
+            className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:top-[-2.499vw] 3xl:left-[-2.499vw] 3xl:blur-[4.792vw] pointer-events-none absolute -top-12 -left-12 h-47 w-47 rounded-full blur-[92px] ${
               isLight ? 'bg-surface-950' : 'bg-brand-650'
-            } ${hasMixBlendScreen ? 'mix-blend-screen' : ''}`}
+            }`}
           />
 
           <div
             aria-hidden
-            className={`pointer-events-none absolute -right-12 -bottom-12 h-47 w-47 rounded-full opacity-80 blur-[80px] ${
+            className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:bottom-[-2.499vw] 3xl:right-[-2.499vw] 3xl:blur-[4.792vw] pointer-events-none absolute -right-12 -bottom-12 h-47 w-47 rounded-full blur-[92px] ${
               isLight ? 'bg-surface-950' : 'bg-brand-650'
-            } ${hasMixBlendScreen ? 'mix-blend-screen' : ''}`}
+            }`}
           />
 
           <h2
