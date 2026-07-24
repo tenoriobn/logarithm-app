@@ -2,7 +2,7 @@
 import Header from 'src/components/Header';
 import { useRef } from 'react';
 import { gsap, useGSAP, Observer } from 'src/lib/gsap';
-import HeroSection from './HeroSection';
+import HomeHero from './HomeHero';
 import ServicesSlide from './ServicesSlide';
 import TextSection from 'src/components/TextSection';
 import HomePageFooter from './HomePageFooter';
@@ -369,7 +369,7 @@ export default function Home() {
       <Header />
 
       <main ref={mainRef} className="relative h-svh w-full overflow-hidden">
-        <HeroSection />
+        <HomeHero />
         <TextSection>
           Toda empres<span className="zoom-origin">a</span> <br className="md:hidden" /> pode
           crescer. <br />

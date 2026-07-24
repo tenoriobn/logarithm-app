@@ -1,11 +1,9 @@
 'use client';
 import { useRef } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
-import SectionTitle from 'src/components/SectionTitle';
-import HeroBackground from './HeroBackground';
-import SectionDescription from 'src/components/SectionDescription';
+import HeroSection from 'src/components/HeroSection';
 
-const HeroSection = () => {
+const HomeHero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -93,28 +91,14 @@ const HeroSection = () => {
   );
 
   return (
-    <section
+    <HeroSection
       ref={sectionRef}
-      aria-labelledby="hero-section-title"
-      className="bg-surface-950 3xl:px-[1.666vw] 3xl:py-[4.998vw] slide-section relative z-10 flex h-full min-h-svh w-full flex-col items-center justify-center px-4 py-16 md:px-8 md:py-24"
-    >
-      <HeroBackground />
-
-      <header className="@container z-2 flex w-full flex-col items-center max-lg:gap-4 lg:items-end">
-        <SectionTitle
-          ref={titleRef}
-          id="hero-section-title"
-          aria-describedby="hero-section-description"
-          className="font-aboro w-full text-[16.32cqw]! leading-[16.32cqw]! uppercase opacity-0"
-        >
-          logarithm
-        </SectionTitle>
-
-        <SectionDescription
-          id="hero-section-description"
-          className="w-max opacity-0 max-sm:max-w-[288px]"
-          ref={descriptionRef}
-        >
+      className="slide-section z-10 h-full"
+      hasBottomGlow={true}
+      titleRef={titleRef}
+      descriptionRef={descriptionRef}
+      descriptionContent={
+        <>
           <span className="desc-scramble" data-text="A lógica por trás de ">
             A lógica por trás de{' '}
           </span>
@@ -122,10 +106,10 @@ const HeroSection = () => {
           <span className="desc-scramble" data-text="grandes transformações.">
             grandes transformações.
           </span>
-        </SectionDescription>
-      </header>
-    </section>
+        </>
+      }
+    />
   );
 };
 
-export default HeroSection;
+export default HomeHero;
