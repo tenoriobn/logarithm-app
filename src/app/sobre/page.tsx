@@ -1,4 +1,4 @@
-import HeroSection from './HeroSection';
+import AboutHero from './AboutHero';
 import SolutionsSection from './SolutionsSection';
 import PrinciplesSection from './PrinciplesSection';
 import Header from 'src/components/Header';
@@ -11,7 +11,7 @@ export default function Sobre() {
       <Header />
 
       <main className="flex flex-1 flex-col">
-        <HeroSection />
+        <AboutHero />
         <SolutionsSection />
         <PrinciplesSection />
       </main>

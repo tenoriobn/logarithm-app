@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import type { HeroBackgroundProps } from './heroBackground.type';
 
-const HeroBackground = () => {
+const HeroBackground = ({ hasBottomGlow }: HeroBackgroundProps) => {
   const [videoReady, setVideoReady] = useState(false);
 
   return (
@@ -51,10 +52,12 @@ const HeroBackground = () => {
         className="absolute h-full w-full bg-[linear-gradient(180deg,rgba(14,31,41,.8)_0%,rgba(14,31,41,.13)_30%,rgba(14,31,41,0)_50%,rgba(14,31,41,.13)_70%,rgba(14,31,41,1)_98%)]"
       />
 
-      <div
-        aria-hidden
-        className="bg-brand-350/28 3xl:w-[27.813vw] 3xl:h-[131.05vw] 3xl:blur-[9.579vw] pointer-events-none absolute bottom-0 left-1/2 h-[2516px] w-[75%] max-w-full -translate-x-1/2 rounded-[50%] blur-[184px] md:w-133.5"
-      />
+      {hasBottomGlow && (
+        <div
+          aria-hidden
+          className="bg-brand-350/28 3xl:w-[27.813vw] 3xl:h-[131.05vw] 3xl:blur-[9.579vw] pointer-events-none absolute bottom-0 left-1/2 h-629 w-[75%] max-w-full -translate-x-1/2 rounded-[50%] blur-[184px] md:w-133.5"
+        />
+      )}
     </>
   );
 };
