@@ -10,11 +10,9 @@ const HomeHero = () => {
 
   useGSAP(
     () => {
-      // Duração ajustada para ser premium mas responsiva
       const tl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
 
       if (titleRef.current) {
-        // Inicializa com blur e invisível
         gsap.set(titleRef.current, { autoAlpha: 0, filter: 'blur(8px)' });
 
         tl.to(titleRef.current, {
@@ -37,7 +35,7 @@ const HomeHero = () => {
         tl.to(
           descriptionRef.current,
           { autoAlpha: 1, filter: 'blur(0px)', duration: 1.5, force3D: true },
-          '-=1.2' // Inicia antes do título terminar
+          '-=1.2'
         );
 
         const descSpans = descriptionRef.current.querySelectorAll('.desc-scramble');
@@ -55,13 +53,12 @@ const HomeHero = () => {
               duration: 1.5,
               ease: 'power3.inOut',
             },
-            '<' // Sincroniza com o fade-in da descrição
+            '<'
           );
         });
       }
 
-      // --- Observer para resetar e reanimar a seção ao sair e voltar ---
-      let wasActive = true; // Na primeira carga, já começa ativa
+      let wasActive = true;
 
       const observer = new MutationObserver(() => {
         if (!sectionRef.current) {
@@ -69,15 +66,14 @@ const HomeHero = () => {
         }
         const style = sectionRef.current.style;
 
-        // Verifica se a seção está visível (GSAP autoAlpha controla opacity e visibility)
         const isVisible = style.visibility !== 'hidden' && style.opacity !== '0';
 
         if (isVisible && !wasActive) {
           wasActive = true;
-          tl.restart(); // Refaz a animação de scramble e blur ao entrar
+          tl.restart();
         } else if (!isVisible && wasActive && style.opacity === '0') {
           wasActive = false;
-          tl.pause(0); // Reseta silenciosamente quando termina de sumir
+          tl.pause(0);
         }
       });
 
