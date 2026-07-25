@@ -57,8 +57,8 @@ export default function FooterInfo({
               <li key={href} className={itemClassName}>
                 <Link
                   href={href}
-                  className={`3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] hover:opacity-75 active:scale-90 ${
-                    isActive ? 'text-white/90' : 'text-white/50'
+                  className={`3xl:text-[1.042vw] transition-default inline-block text-[clamp(1rem,3.5vw,1.25rem)] ${
+                    isActive ? 'text-white/90' : 'text-white/50 hover:opacity-75 active:scale-90'
                   }`}
                 >
                   {label}

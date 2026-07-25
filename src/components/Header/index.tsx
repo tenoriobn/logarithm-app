@@ -3,11 +3,14 @@ import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import Menu from './Menu';
+import { useBodyOverflow } from 'src/hooks/useBodyOverflow';
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [isLightMode, setIsLightMode] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  useBodyOverflow(isMenu);
 
   useEffect(() => {
     const handleTransition = (e: Event) => {

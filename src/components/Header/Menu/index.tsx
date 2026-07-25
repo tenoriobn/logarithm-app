@@ -35,8 +35,8 @@ const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`transition-opacity hover:opacity-70 ${
-                    isActive ? 'text-white/90' : 'text-white/50'
+                  className={`transition-default inline-block ${
+                    isActive ? 'text-white/90' : 'text-white/50 hover:opacity-70 active:scale-90'
                   }`}
                 >
                   {label}
