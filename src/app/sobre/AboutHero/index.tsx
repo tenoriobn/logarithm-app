@@ -10,22 +10,25 @@ const AboutHero = () => {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.5 }, delay: 0.5 });
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out', duration: 1.4, force3D: true },
+        delay: 0.3,
+      });
 
       if (titleRef.current) {
         tl.fromTo(
           titleRef.current,
-          { opacity: 0, y: 80, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1 }
+          { opacity: 0, y: 60, filter: 'blur(12px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)' }
         );
       }
 
       if (descriptionRef.current) {
         tl.fromTo(
           descriptionRef.current,
-          { opacity: 0, x: -40 },
-          { opacity: 1, x: 0, duration: 1.2 },
-          '-=1'
+          { opacity: 0, y: 30, filter: 'blur(8px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2 },
+          '-=1.1'
         );
       }
     },
