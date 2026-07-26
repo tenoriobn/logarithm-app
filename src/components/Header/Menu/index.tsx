@@ -3,28 +3,21 @@ import Link from 'next/link';
 import FooterInfo from 'src/components/FooterInfo';
 import type { MenuProps } from './menu.type';
 import { NAV_LINKS } from './navLink';
-import { createPortal } from 'react-dom';
-import { useState, useEffect } from 'react';
 
 const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const content = (
+  return (
     <>
       <div
         onClick={() => setIsMenu(false)}
-        className={`bg-surface-950/90 fixed inset-0 z-1000 transition-opacity duration-500 will-change-[opacity] ${
+        className={`bg-surface-950/90 fixed inset-0 z-30 transition-opacity duration-500 will-change-[opacity] ${
           isMenu ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
       />
 
       <div
-        className={`bg-surface-950 3xl:p-[1.666vw] fixed top-0 right-0 z-1001 grid h-svh w-full grid-rows-[1fr_auto_1fr] items-center justify-center border-l border-white/5 p-4 transition-transform duration-500 ease-out md:w-[50%] md:p-8 lg:w-max ${
+        className={`bg-surface-950 3xl:p-[1.666vw] fixed top-0 right-0 z-40 grid h-svh w-full grid-rows-[1fr_auto_1fr] items-center justify-center border-l border-white/5 p-4 transition-transform duration-500 ease-out md:w-[50%] md:p-8 lg:w-max ${
           isMenu ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -62,12 +55,6 @@ const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
       </div>
     </>
   );
-
-  if (!mounted) {
-    return null;
-  }
-
-  return createPortal(content, document.body);
 };
 
 export default Menu;
