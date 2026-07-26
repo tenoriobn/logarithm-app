@@ -3,11 +3,14 @@ import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import Menu from './Menu';
+import { useBodyOverflow } from 'src/hooks/useBodyOverflow';
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [isLightMode, setIsLightMode] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  useBodyOverflow(isMenu);
 
   useEffect(() => {
     const handleTransition = (e: Event) => {
@@ -38,7 +41,7 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className="3xl:p-[1.666vw] absolute z-999 flex w-full items-center justify-between p-4 md:p-8"
+      className="3xl:p-[1.666vw] absolute z-2000 flex w-full items-center justify-between p-4 md:p-8"
     >
       <div className="header-anim opacity-0">
         <Image
@@ -53,7 +56,7 @@ const Header = () => {
       <div className="header-anim 3xl:w-[2.499vw] relative z-50 flex w-10 items-center justify-center opacity-0 md:w-12">
         <button
           onClick={() => setIsMenu(!isMenu)}
-          className="3xl:h-[0.627vw] relative z-50 flex h-3 w-full flex-col justify-center opacity-75 transition-all duration-300 hover:opacity-100 active:scale-90"
+          className="3xl:h-[0.627vw] relative z-2001 flex h-3 w-full flex-col justify-center opacity-75 transition-all duration-300 hover:opacity-100 active:scale-90"
         >
           <span
             className={`${spanColor} 3xl:h-[.157vw] absolute h-0.75 w-full rounded-full transition-all duration-300 ease-out ${

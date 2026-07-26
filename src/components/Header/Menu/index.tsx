@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { SOCIAL_LINK } from 'src/constants/socialLink';
+import FooterInfo from 'src/components/FooterInfo';
 import type { MenuProps } from './menu.type';
 import { NAV_LINKS } from './navLink';
 
@@ -35,8 +35,8 @@ const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`transition-opacity hover:opacity-70 ${
-                    isActive ? 'text-white/90' : 'text-white/50'
+                  className={`transition-default inline-block ${
+                    isActive ? 'text-white/90' : 'text-white/50 hover:opacity-70 active:scale-90'
                   }`}
                 >
                   {label}
@@ -46,47 +46,12 @@ const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
           })}
         </nav>
 
-        <div className="3xl:gap-[1.25vw] z-2 flex flex-col items-center gap-6 self-end">
-          <ul className="3xl:gap-[0.833vw] flex justify-center gap-4 lg:justify-end">
-            {SOCIAL_LINK.map(({ icon: Icon, href, ariaLabel }) => (
-              <li key={ariaLabel} className="animate-item">
-                <Link
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={ariaLabel}
-                  className="transition-default flex hover:opacity-75 active:scale-90"
-                >
-                  <Icon
-                    className="3xl:h-[1.875vw] 3xl:w-[1.875vw] h-9 w-9"
-                    aria-hidden="true"
-                    focusable="false"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <ul className="3xl:gap-[0.833vw] flex items-center gap-2 max-lg:flex-col md:gap-4">
-            <li className="animate-item">
-              <Link
-                href="/politica-de-privacidade"
-                className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
-              >
-                Política de Privacidade
-              </Link>
-            </li>
-
-            <li className="animate-item">
-              <Link
-                href="/exclusao-de-dados"
-                className="3xl:text-[1.042vw] transition-default text-[clamp(1rem,3.5vw,1.25rem)] text-white/75 hover:opacity-75 active:scale-90"
-              >
-                Exclusão de Dados
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <FooterInfo
+          showCopyright={false}
+          className="3xl:gap-[1.25vw] z-2 flex w-full flex-col items-center self-end"
+          itemClassName="animate-item"
+          navAriaLabel="Links secundários do menu"
+        />
       </div>
     </>
   );

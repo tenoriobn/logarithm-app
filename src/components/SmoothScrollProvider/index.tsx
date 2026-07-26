@@ -1,10 +1,12 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { useGSAP, ScrollSmoother, ScrollTrigger } from 'src/lib/gsap';
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useGSAP(
     () => {
@@ -27,6 +29,14 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
     },
     { scope: wrapperRef }
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const smoother = ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTop(0);
+    }
+  }, [pathname]);
 
   return (
     <div id="smooth-wrapper" ref={wrapperRef}>

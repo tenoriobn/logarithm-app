@@ -69,6 +69,18 @@
     rgb(from var(--color-surface-850) r g b / 60%) 70%,
     var(--color-brand-600) 100%
   );
+
+  --background-image-surface-gradient: linear-gradient(
+    180deg,
+    var(--color-surface-950) 50%,
+    var(--color-surface-850) 100%
+  );
+
+  --background-image-surface-gradient-reverse: linear-gradient(
+    180deg,
+    var(--color-surface-850) 0%,
+    var(--color-surface-950) 50%
+  );
 }
 
 @layer utilities {

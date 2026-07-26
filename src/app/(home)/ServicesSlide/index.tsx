@@ -11,19 +11,14 @@ const ServicesSlide = () => {
       const customEvent = e as CustomEvent;
       const { duration, currentType, nextType } = customEvent.detail;
 
-      // Aciona a transição premium e super leve ao entrar/sair de serviços
       if (currentType === 'services' || nextType === 'services') {
         const images = document.querySelectorAll('.service-img');
         const tl = gsap.timeline();
 
-        // Efeito "Spatial Warp / Momentum Pull":
-        // Substituímos os filtros de desfoque/SVG por distorção espacial pura (scale + skew).
-        // Isso zera completamente qualquer lag no Chrome porque não exige re-rasterização de textura,
-        // apenas transformação de vértices acelerada 100% pela GPU.
         tl.to(images, {
           scale: 1.35,
-          skewX: 4, // Cria a sensação de "arraste/derretimento" lateral
-          skewY: -2, // Adiciona profundidade ao arraste
+          skewX: 4,
+          skewY: -2,
           duration: duration / 2,
           ease: 'power2.in',
           force3D: true,

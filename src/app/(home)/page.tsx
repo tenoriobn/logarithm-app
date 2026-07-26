@@ -12,7 +12,6 @@ export default function Home() {
   const footerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Prática limpa e recomendada no React: busca os elementos dentro do escopo do main e anexa o footer
     const mainSections = gsap.utils.toArray<HTMLElement>('.slide-section', mainRef.current);
     const sections = [...mainSections, footerRef.current].filter(Boolean) as HTMLElement[];
     const headings = sections.map((section) =>
@@ -26,7 +25,6 @@ export default function Home() {
     const wrap = gsap.utils.wrap(0, sections.length);
     let animating = false;
 
-    // Escopa a seleção de .outer e .inner apenas para as seções deste slider
     const outers = sections.map((s) => s.querySelector('.outer')).filter(Boolean);
     const inners = sections.map((s) => s.querySelector('.inner')).filter(Boolean);
 
@@ -103,17 +101,15 @@ export default function Home() {
         }
         tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 1.0);
       } else if (isLeavingWhiteSection && currentSection) {
-        gsap.set(currentSection, { zIndex: 2 }); // Mantém a tela branca por cima inicialmente
-        gsap.set(nextSection, { zIndex: 1 }); // Tela escura entra por baixo
+        gsap.set(currentSection, { zIndex: 2 });
+        gsap.set(nextSection, { zIndex: 1 });
         if (nextOuter && nextInner) {
           gsap.set([nextOuter, nextInner], { yPercent: 0 });
         }
-        // Faz o fade out suave da tela branca no início (0 a 0.5s) revelando o texto gigante branco encolhendo por baixo
+
         tl.to(currentSection, { autoAlpha: 0, duration: 0.5, ease: 'power2.inOut' }, 0);
       } else if (isDifferentBg && currentSection) {
-        // Transição premium suave entre seções de fundos diferentes (corte não seco)
         if (fromTop) {
-          // Rolando para cima: próxima tela (acima) surge em fade por cima da atual
           gsap.set(currentSection, { zIndex: 1 });
           gsap.set(nextSection, { zIndex: 2, autoAlpha: 0 });
           if (nextOuter && nextInner) {
@@ -122,7 +118,6 @@ export default function Home() {
           tl.to(nextSection, { autoAlpha: 1, duration: 1.25, ease: 'power2.inOut' }, 0);
           tl.set(currentSection, { autoAlpha: 0 }, 1.25);
         } else {
-          // Rolando para baixo: tela atual (acima) desaparece em fade revelando a próxima (abaixo)
           gsap.set(currentSection, { zIndex: 2 });
           gsap.set(nextSection, { zIndex: 1 });
           if (nextOuter && nextInner) {
@@ -146,12 +141,10 @@ export default function Home() {
         }
 
         if (currentSection) {
-          // Oculta a seção anterior APÓS a animação (duração padrão é 1.25s)
           tl.set(currentSection, { autoAlpha: 0 }, 1.25);
         }
       }
 
-      // Animação premium de saída do heading e itens animados atuais
       const currentHeading = currentIndex >= 0 ? headings[currentIndex] : null;
       const currentItems = currentIndex >= 0 ? animatedItems[currentIndex] : [];
 
@@ -160,12 +153,10 @@ export default function Home() {
           let tOrigin = '50% 50%';
           const zoomTarget = currentHeading.querySelector('.zoom-origin');
           if (zoomTarget) {
-            // Em vez de pegar o centro exato (que cai no buraco do 'a'),
-            // vamos deslocar para pegar a haste direita e sólida da letra.
             const hRect = currentHeading.getBoundingClientRect();
             const targetRect = zoomTarget.getBoundingClientRect();
-            const strokeOffsetX = targetRect.width * 0.8; // 85% para a direita (haste do 'a')
-            const strokeOffsetY = targetRect.height * 0.5; // 50% na altura
+            const strokeOffsetX = targetRect.width * 0.8;
+            const strokeOffsetY = targetRect.height * 0.5;
 
             const centerX = targetRect.left + strokeOffsetX - hRect.left;
             const centerY = targetRect.top + strokeOffsetY - hRect.top;
@@ -175,9 +166,6 @@ export default function Home() {
             tOrigin = `${ox}% ${oy}%`;
           }
 
-          // Cálculo dinâmico para garantir que a escala seja suficiente para preencher
-          // qualquer tamanho de tela, baseado na largura da viewport.
-          // Assumindo um traço fino de ~2px, scale de (window.innerWidth) garante cobertura total.
           const maxScale = typeof window !== 'undefined' ? window.innerWidth * 1.5 : 2500;
 
           tl.to(
@@ -187,13 +175,10 @@ export default function Home() {
               duration: 1.5,
               ease: 'power3.inOut',
               transformOrigin: tOrigin,
-              force3D: false, // CRUCIAL: false evita o limite de textura da GPU (que fazia a letra sumir em zooms altos)
+              force3D: false,
             },
             0
           );
-        } else if (isLeavingWhiteSection) {
-          // REMOVIDO: Nenhuma animação no texto filho, deixamos a seção pai dar o fade out suavemente.
-          // Isso elimina qualquer possibilidade do navegador bugar e "piscar" o texto de volta.
         } else {
           tl.to(
             currentHeading,
@@ -206,7 +191,7 @@ export default function Home() {
               ease: 'power2.inOut',
             },
             0
-          ); // Inicia imediatamente junto com a transição de seção
+          );
         }
       }
 
@@ -219,14 +204,13 @@ export default function Home() {
             y: -20 * dFactor,
             filter: 'blur(6px)',
             duration: 0.8,
-            stagger: 0.03, // Saída rápida
+            stagger: 0.03,
             ease: 'power2.inOut',
           },
           0
         );
       }
 
-      // Animação premium do heading e itens animados de entrada
       const heading = headings[index];
       const items = animatedItems[index];
 
@@ -251,8 +235,6 @@ export default function Home() {
             0.5
           );
         } else if (isLeavingWhiteSection) {
-          // Reversão limpa e garantida:
-          // 1. Reseta para 1 temporariamente só para medir
           gsap.set(heading, { scale: 1 });
 
           let tOrigin = '50% 50%';
@@ -272,8 +254,6 @@ export default function Home() {
           }
 
           const maxScale = typeof window !== 'undefined' ? window.innerWidth * 1.5 : 2500;
-
-          // 2. Trava no estado gigante BRANCO *antes* da timeline começar, para o usuário não ver frame vazado
           gsap.set(heading, {
             scale: maxScale,
             transformOrigin: tOrigin,
@@ -281,14 +261,13 @@ export default function Home() {
             filter: 'none',
           });
 
-          // 3. Anima encolhendo suavemente
           tl.to(
             heading,
             {
               scale: 1,
               duration: 1.5,
               ease: 'power3.inOut',
-              force3D: false, // 2D nativo infinito
+              force3D: false,
             },
             0
           );
@@ -298,7 +277,7 @@ export default function Home() {
             {
               autoAlpha: 0,
               scale: 1.08,
-              y: 20 * dFactor, // Respeita a direção do scroll
+              y: 20 * dFactor,
               filter: 'blur(6px)',
             },
             {
@@ -329,11 +308,11 @@ export default function Home() {
             y: 0,
             filter: 'blur(0px)',
             duration: 1.1,
-            stagger: 0.1, // Efeito escada/cascata (premium)
+            stagger: 0.1,
             ease: 'power2.out',
           },
           1.2
-        ); // Cascata: inicia 0.2s depois do texto
+        );
       }
 
       if (typeof window !== 'undefined') {
