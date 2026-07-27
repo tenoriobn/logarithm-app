@@ -50,7 +50,7 @@ export const LegalContent = ({
   return (
     <section
       aria-label={ariaLabel}
-      className="text-gradient text-gradient-white 3xl:px-[1.666vw] 3xl:space-y-[3.332vw] space-y-8 px-4 md:space-y-16 md:px-8"
+      className="3xl:px-[1.666vw] 3xl:space-y-[3.332vw] space-y-8 px-4 md:space-y-16 md:px-8"
     >
       {children}
     </section>
@@ -68,7 +68,10 @@ export const LegalSection = ({
 }) => {
   return (
     <section aria-labelledby={id} className="3xl:space-y-[.834vw] space-y-2 md:space-y-4">
-      <h2 id={id} className="3xl:text-[1.666vw] text-2xl font-medium md:text-[2rem]">
+      <h2
+        id={id}
+        className="text-gradient text-gradient-white 3xl:text-[1.666vw] text-2xl font-medium md:text-[2rem]"
+      >
         {title}
       </h2>
       {children}
@@ -77,12 +80,16 @@ export const LegalSection = ({
 };
 
 export const LegalParagraph = ({ children }: { children: React.ReactNode }) => {
-  return <p className="3xl:text-[1.25vw] text-base md:text-2xl">{children}</p>;
+  return (
+    <p className="text-gradient text-gradient-white 3xl:text-[1.25vw] text-base md:text-2xl">
+      {children}
+    </p>
+  );
 };
 
 export const LegalList = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ul className="3xl:[&>li]:pl-[1.25vw] 3xl:space-y-[.417vw] ml-2 flex flex-col space-y-2 md:ml-4 [&>li]:relative [&>li]:pl-4 md:[&>li]:pl-6 [&>li::before]:absolute [&>li::before]:top-[0.6em] [&>li::before]:left-0 [&>li::before]:h-[0.35em] [&>li::before]:w-[0.35em] [&>li::before]:rounded-full [&>li::before]:bg-white/50 [&>li::before]:content-['']">
+    <ul className="text-gradient text-gradient-white 3xl:[&>li]:pl-[1.25vw] 3xl:space-y-[.417vw] ml-2 flex flex-col space-y-2 md:ml-4 [&>li]:relative [&>li]:pl-4 md:[&>li]:pl-6 [&>li::before]:absolute [&>li::before]:top-[0.6em] [&>li::before]:left-0 [&>li::before]:h-[0.35em] [&>li::before]:w-[0.35em] [&>li::before]:rounded-full [&>li::before]:bg-white/50 [&>li::before]:content-['']">
       {children}
     </ul>
   );
