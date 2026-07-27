@@ -1,12 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SOCIAL_LINK } from './socialLink';
-
-const LEGAL_LINKS = [
-  { href: '/politica-de-privacidade', label: 'Política de Privacidade' },
-  { href: '/termos-de-uso', label: 'Termos de Uso' },
-];
+import { LEGAL_LINKS, MAIS_EU_LEGAL_LINKS, SOCIAL_LINK } from './socialLink';
 import type { FooterInfoProps } from './footerInfo.type';
 
 export default function FooterInfo({
@@ -16,6 +11,7 @@ export default function FooterInfo({
   showCopyright = true,
 }: FooterInfoProps) {
   const pathname = usePathname();
+  const currentLinks = pathname?.startsWith('/mais-eu') ? MAIS_EU_LEGAL_LINKS : LEGAL_LINKS;
 
   return (
     <nav aria-label={navAriaLabel} className={className}>
@@ -51,7 +47,7 @@ export default function FooterInfo({
           aria-label="Links secundários"
           className="max-xs:flex-col 3xl:gap-[0.833vw] flex flex-wrap items-center justify-center gap-2 md:gap-4"
         >
-          {LEGAL_LINKS.map(({ href, label }) => {
+          {currentLinks.map(({ href, label }) => {
             const isActive = pathname === href;
             return (
               <li key={href} className={itemClassName}>

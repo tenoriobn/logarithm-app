@@ -20,3 +20,13 @@ export const SOCIAL_LINK = [
     ariaLabel: 'Acessar canal da Logarithm no Whatsapp',
   },
 ];
+
+export const LEGAL_LINKS = [
+  { href: '/politica-de-privacidade', label: 'Política de Privacidade' },
+  { href: '/termos-de-uso', label: 'Termos de Uso' },
+];
+
+export const MAIS_EU_LEGAL_LINKS = [
+  { href: '/mais-eu/politica-de-privacidade', label: 'Política de Privacidade' },
+  { href: '/mais-eu/exclusao-de-dados', label: 'Exclusão de Dados' },
+];
