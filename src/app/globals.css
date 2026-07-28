@@ -165,6 +165,36 @@
     padding: 0;
   }
 
+  body {
+    &::-webkit-scrollbar {
+      width: 10px;
+      transition: all 3s ease-in-out;
+
+      @media (min-width: 1992px) {
+        width: 0.56vw;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #0b1921;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #1b3e52;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #1b3e52da;
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #1b3e52 #0b1921;
+    }
+  }
+
   button,
   a {
     cursor: pointer;
