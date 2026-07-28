@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import LogoIcon from 'public/icons/logo.svg';
+import { useBodyOverflow } from 'src/hooks/useBodyOverflow';
 
 const Preloader = () => {
   const [shouldRender, setShouldRender] = useState(() => {
@@ -10,6 +11,8 @@ const Preloader = () => {
     }
     return true;
   });
+  useBodyOverflow(shouldRender);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -128,10 +131,14 @@ const Preloader = () => {
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-9999 flex h-svh w-full items-center justify-center"
-    >
+    <>
+      <style suppressHydrationWarning>{`
+        body { overflow: hidden !important; }
+      `}</style>
+      <div
+        ref={containerRef}
+        className="pointer-events-none fixed inset-0 z-9999 flex h-svh w-full items-center justify-center"
+      >
       <div
         ref={bgRef}
         className="bg-surface-950 pointer-events-auto absolute inset-0 h-full w-full"
@@ -152,6 +159,7 @@ const Preloader = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
