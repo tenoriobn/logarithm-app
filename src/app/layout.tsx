@@ -16,7 +16,7 @@ const aboro = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://logarithm.com.br/'),
+  metadataBase: new URL('https://logarithm-app.vercel.app/'),
 
   title: {
     default: 'Logarithm | Tecnologia para problemas reais',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Logarithm',
-      url: 'https://logarithm.com.br/',
+      url: 'https://logarithm-app.vercel.app/',
     },
   ],
 
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     'Consultoria em tecnologia, desenvolvimento de software, automação e transformação digital',
 
   alternates: {
-    canonical: 'https://logarithm.com.br/',
+    canonical: 'https://logarithm-app.vercel.app/',
   },
 
   robots: {
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://logarithm.com.br/',
+    url: 'https://logarithm-app.vercel.app/',
     siteName: 'Logarithm',
 
     title: 'Logarithm | Tecnologia para problemas reais',
