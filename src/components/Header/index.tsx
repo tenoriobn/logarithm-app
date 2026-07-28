@@ -1,9 +1,9 @@
 'use client';
-import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { gsap, useGSAP } from 'src/lib/gsap';
 import Menu from './Menu';
 import { useBodyOverflow } from 'src/hooks/useBodyOverflow';
+import LogoIcon from 'public/icons/logo.svg';
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
@@ -19,37 +19,67 @@ const Header = () => {
     };
 
     window.addEventListener('sectionTransition', handleTransition);
+
     return () => window.removeEventListener('sectionTransition', handleTransition);
   }, []);
 
   useGSAP(
     () => {
       const elements = headerRef.current?.querySelectorAll('.header-anim');
-      if (elements) {
-        gsap.fromTo(
-          elements,
-          { opacity: 0, y: -30 },
-          { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }
-        );
+
+      const playAnim = (isFromPreloader = false) => {
+        if (!elements) {
+          return;
+        }
+
+        if (isFromPreloader) {
+          const logo = headerRef.current?.querySelector('#header-logo');
+          const otherElements = Array.from(elements).filter((el) => el !== logo);
+
+          // Se veio do preloader, a logo já deve aparecer instantaneamente e no lugar final
+          if (logo) {
+            gsap.set(logo, { opacity: 1, y: 0 });
+          }
+          // Os demais botões caem normalmente
+          if (otherElements.length > 0) {
+            gsap.fromTo(
+              otherElements,
+              { opacity: 0, y: -30 },
+              { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }
+            );
+          }
+        } else {
+          gsap.fromTo(
+            elements,
+            { opacity: 0, y: -30 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }
+          );
+        }
+      };
+
+      const hasLoaded =
+        typeof window !== 'undefined' &&
+        (window as Window & { hasPreloaderRun?: boolean }).hasPreloaderRun;
+      if (hasLoaded) {
+        playAnim(false);
+      } else {
+        window.addEventListener('preloaderComplete', () => playAnim(true), { once: true });
       }
     },
     { scope: headerRef }
   );
 
   const spanColor = !isMenu && isLightMode ? 'bg-surface-950' : 'bg-surface-400';
+  const logoColor = !isMenu && isLightMode ? 'text-surface-950' : 'text-surface-400';
 
   return (
     <header
       ref={headerRef}
       className="3xl:p-[1.666vw] absolute z-2000 flex w-full items-center justify-between p-4 md:p-8"
     >
-      <div className="header-anim opacity-0">
-        <Image
-          src="/icons/logo.png"
-          width={24}
-          height={32}
-          className="3xl:h-[1.666vw] 3xl:w-[1.25vw] h-8 w-6"
-          alt="Logo do tipo"
+      <div id="header-logo" className="header-anim opacity-0">
+        <LogoIcon
+          className={`3xl:h-[1.666vw] h-8 w-8 transition-colors duration-300 ${logoColor}`}
         />
       </div>
 

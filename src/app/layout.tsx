@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
+import Preloader from 'src/components/Preloader';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
@@ -125,6 +126,10 @@ export const metadata: Metadata = {
     email: false,
     address: false,
   },
+
+  verification: {
+    google: 'adicione-seu-google-site-verification-aqui', // Add your Google verification code
+  },
 };
 
 export const viewport: Viewport = {
@@ -137,8 +142,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={`${plusJakartaSans.className} ${aboro.variable} h-full antialiased`}>
-      <body className={`${plusJakartaSans.className} flex min-h-full flex-col`}>{children}</body>
+    <html
+      lang="pt-br"
+      className={`${plusJakartaSans.className} ${aboro.variable} h-full antialiased`}
+    >
+      <body className={`${plusJakartaSans.className} flex min-h-full flex-col`}>
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }
