@@ -27,13 +27,11 @@ const Preloader = () => {
 
       gsap.set(textContainerRef.current, { width: 0 });
 
-      // Promessa da animação inicial
       const animationPromise = new Promise((resolve) => {
         const tlIn = gsap.timeline({
           onComplete: () => resolve(true),
         });
 
-        // A logo surge suavemente do desfoque (flicker corrigido pela classe opacity-0 no HTML)
         tlIn.to(logoRef.current, {
           opacity: 1,
           filter: 'blur(0px)',
@@ -47,11 +45,10 @@ const Preloader = () => {
             duration: 1.5,
             ease: 'power3.inOut',
           },
-          '+=0.2' // Leve antecipação em relação a antes para fluidez
+          '+=0.2'
         );
       });
 
-      // Promessa do carregamento real dos assets da página
       const windowLoadPromise = new Promise((resolve) => {
         if (document.readyState === 'complete') {
           resolve(true);
@@ -60,7 +57,6 @@ const Preloader = () => {
         }
       });
 
-      // Quando a animação INICIAL terminar E a página estiver 100% carregada
       Promise.all([animationPromise, windowLoadPromise]).then(() => {
         const tlOut = gsap.timeline({
           onComplete: () => {
@@ -72,14 +68,12 @@ const Preloader = () => {
           },
         });
 
-        // 1. Ocultar o texto do Preloader
         tlOut.to(textContainerRef.current, {
           opacity: 0,
           duration: 0.5,
           ease: 'power2.inOut',
         });
 
-        // 2. Transição final para a logo do Header
         tlOut.add(() => {
           const headerLogo = document.getElementById('header-logo');
           const currentLogo = logoInnerRef.current;
@@ -110,7 +104,6 @@ const Preloader = () => {
               ease: 'power3.inOut',
             });
           } else {
-            // Fallback caso não encontre o header (em outras páginas, por exemplo)
             gsap.to(containerRef.current, {
               opacity: 0,
               duration: 1,
@@ -119,7 +112,6 @@ const Preloader = () => {
           }
         });
 
-        // Dá o tempo para as transições do .add() finalizarem antes de disparar o onComplete geral do tlOut
         tlOut.to({}, { duration: 1.5 });
       });
     },
@@ -139,26 +131,26 @@ const Preloader = () => {
         ref={containerRef}
         className="pointer-events-none fixed inset-0 z-9999 flex h-svh w-full items-center justify-center"
       >
-      <div
-        ref={bgRef}
-        className="bg-surface-950 pointer-events-auto absolute inset-0 h-full w-full"
-      />
+        <div
+          ref={bgRef}
+          className="bg-surface-950 pointer-events-auto absolute inset-0 h-full w-full"
+        />
 
-      <div className="pointer-events-auto relative z-10 flex items-center justify-center gap-2 md:gap-4">
-        <div ref={logoRef} className="shrink-0 origin-top-left opacity-0 blur-md">
-          <div ref={logoInnerRef}>
-            <LogoIcon className="3xl:h-[1.666vw] text-surface-400 h-12 w-12" />
+        <div className="3xl:gap-[.834vw] pointer-events-auto relative z-10 flex items-center justify-center gap-2 md:gap-4">
+          <div ref={logoRef} className="shrink-0 origin-top-left opacity-0 blur-md">
+            <div ref={logoInnerRef}>
+              <LogoIcon className="3xl:h-[2.5vw] 3xl:w-[2.5vw] text-surface-400 h-12 w-12" />
+            </div>
           </div>
-        </div>
-        <div ref={textContainerRef} className="w-0 overflow-hidden whitespace-nowrap">
-          <div className="pr-1 pl-1">
-            <p className="text-gradient text-gradient-white font-aboro relative text-[2rem] md:text-[2.5rem]">
-              LOGARITHM
-            </p>
+          <div ref={textContainerRef} className="w-0 overflow-hidden whitespace-nowrap">
+            <div className="3xl:px-[0.053vw] px-1">
+              <p className="text-gradient text-gradient-white font-aboro 3xl:text-[2.084vw] relative text-[2rem] md:text-[2.5rem]">
+                LOGARITHM
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

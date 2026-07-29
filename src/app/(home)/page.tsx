@@ -126,7 +126,6 @@ export default function Home() {
           tl.to(currentSection, { autoAlpha: 0, duration: 1.25, ease: 'power2.inOut' }, 0);
         }
       } else {
-        // Transição normal
         if (nextOuter && nextInner) {
           tl.fromTo(
             [nextOuter, nextInner],

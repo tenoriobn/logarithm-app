@@ -79,7 +79,7 @@ const Header = () => {
     >
       <div id="header-logo" className="header-anim opacity-0">
         <LogoIcon
-          className={`3xl:h-[1.666vw] h-8 w-8 transition-colors duration-300 ${logoColor}`}
+          className={`3xl:h-[1.666vw] 3xl:w-[1.666vw] h-8 w-8 transition-colors duration-300 ${logoColor}`}
         />
       </div>
 
