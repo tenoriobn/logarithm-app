@@ -48,7 +48,7 @@ const Menu = ({ isMenu, setIsMenu }: MenuProps) => {
 
         <FooterInfo
           showCopyright={false}
-          className="3xl:gap-[1.25vw] z-2 flex w-full flex-col items-center self-end"
+          className="z-2 flex w-full flex-col items-center self-end"
           itemClassName="animate-item"
           navAriaLabel="Links secundários do menu"
         />
