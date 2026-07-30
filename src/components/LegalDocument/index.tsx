@@ -89,7 +89,7 @@ export const LegalParagraph = ({ children }: { children: React.ReactNode }) => {
 
 export const LegalList = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ul className="text-gradient text-gradient-white 3xl:[&>li]:pl-[1.25vw] 3xl:space-y-[.417vw] ml-2 flex flex-col space-y-2 md:ml-4 [&>li]:relative [&>li]:pl-4 md:[&>li]:pl-6 [&>li::before]:absolute [&>li::before]:top-[0.6em] [&>li::before]:left-0 [&>li::before]:h-[0.35em] [&>li::before]:w-[0.35em] [&>li::before]:rounded-full [&>li::before]:bg-white/50 [&>li::before]:content-['']">
+    <ul className="text-gradient text-gradient-white 3xl:[&>li]:pl-[1.25vw] 3xl:space-y-[.417vw] 3xl:ml-[.834vw] ml-2 flex flex-col space-y-2 md:ml-4 [&>li]:relative [&>li]:pl-4 md:[&>li]:pl-6 [&>li::before]:absolute [&>li::before]:top-[0.6em] [&>li::before]:left-0 [&>li::before]:h-[0.35em] [&>li::before]:w-[0.35em] [&>li::before]:rounded-full [&>li::before]:bg-white/50 [&>li::before]:content-['']">
       {children}
     </ul>
   );

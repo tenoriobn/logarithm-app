@@ -1,6 +1,7 @@
 import LinkedinIcon from 'public/icons/linkedin.svg';
 import InstagramIcon from 'public/icons/instagram.svg';
 import WhatsappIcon from 'public/icons/whatsapp.svg';
+import GmailIcon from 'public/icons/gmail.svg';
 
 export const SOCIAL_LINK = [
   {
@@ -13,11 +14,15 @@ export const SOCIAL_LINK = [
     href: 'https://www.instagram.com/logarithm.solutions',
     ariaLabel: 'Visitar perfil da Logarithm no Instagram',
   },
-
   {
     icon: WhatsappIcon,
     href: 'https://wa.me/5591719041?text=Olá!%20Conheci%20a%20Logarithm%20e%20gostaria%20de%20receber%20mais%20informações.',
     ariaLabel: 'Acessar canal da Logarithm no Whatsapp',
+  },
+  {
+    icon: GmailIcon,
+    href: 'mailto:logarithm.ltda@gmail.com',
+    ariaLabel: 'Entre em contato pelo e-mail oficial da Logarithm no Gmail',
   },
 ];
 

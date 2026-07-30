@@ -5,25 +5,23 @@ export default function TextSection({ children, variant = 'dark' }: TextSectionP
 
   return (
     <section className="slide-section z-0">
-      <div className={`outer h-full w-full overflow-hidden ${isLight ? 'bg-surface-100' : ''}`}>
+      <div className={`outer bg-surface-950 h-full w-full overflow-hidden`}>
         <div
-          className={`inner 3xl:p-[1.666vw] relative flex h-full w-full items-center justify-center overflow-hidden p-4 md:p-8 ${
-            !isLight ? 'bg-surface-950' : ''
-          }`}
+          className={`inner 3xl:p-[1.666vw] relative flex h-full w-full items-center justify-center overflow-hidden p-4 md:p-8 ${isLight ? 'bg-surface-fade' : ''} `}
         >
-          <div
-            aria-hidden
-            className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:top-[-2.499vw] 3xl:left-[-2.499vw] 3xl:blur-[4.792vw] pointer-events-none absolute -top-12 -left-12 h-47 w-47 rounded-full blur-[92px] ${
-              isLight ? 'bg-surface-950' : 'bg-brand-650'
-            }`}
-          />
+          {!isLight && (
+            <>
+              <div
+                aria-hidden
+                className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:top-[-2.499vw] 3xl:left-[-2.499vw] 3xl:blur-[4.792vw] bg-brand-650 pointer-events-none absolute -top-12 -left-12 h-47 w-47 rounded-full blur-[92px]`}
+              />
 
-          <div
-            aria-hidden
-            className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:bottom-[-2.499vw] 3xl:right-[-2.499vw] 3xl:blur-[4.792vw] pointer-events-none absolute -right-12 -bottom-12 h-47 w-47 rounded-full blur-[92px] ${
-              isLight ? 'bg-surface-950' : 'bg-brand-650'
-            }`}
-          />
+              <div
+                aria-hidden
+                className={`3xl:h-[9.787vw] 3xl:w-[9.787vw] 3xl:bottom-[-2.499vw] 3xl:right-[-2.499vw] 3xl:blur-[4.792vw] bg-brand-650 pointer-events-none absolute -right-12 -bottom-12 h-47 w-47 rounded-full blur-[92px]`}
+              />
+            </>
+          )}
 
           <h2
             className={`section-heading text-gradient 3xl:text-[2.916vw] text-center text-[clamp(1.5rem,6vw,2.25rem)] font-medium md:text-[clamp(2.25rem,4vw,3.5rem)] ${

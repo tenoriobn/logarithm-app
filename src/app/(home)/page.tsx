@@ -126,7 +126,6 @@ export default function Home() {
           tl.to(currentSection, { autoAlpha: 0, duration: 1.25, ease: 'power2.inOut' }, 0);
         }
       } else {
-        // Transição normal
         if (nextOuter && nextInner) {
           tl.fromTo(
             [nextOuter, nextInner],
@@ -151,7 +150,13 @@ export default function Home() {
       if (currentHeading) {
         if (isEnteringWhiteSection) {
           let tOrigin = '50% 50%';
-          const zoomTarget = currentHeading.querySelector('.zoom-origin');
+          const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+          let zoomTarget = currentHeading.querySelector('.zoom-origin');
+          if (isMobile) {
+            zoomTarget = currentHeading.querySelector('.zoom-origin-mobile') || zoomTarget;
+          } else {
+            zoomTarget = currentHeading.querySelector('.zoom-origin-desktop') || zoomTarget;
+          }
           if (zoomTarget) {
             const hRect = currentHeading.getBoundingClientRect();
             const targetRect = zoomTarget.getBoundingClientRect();
@@ -238,7 +243,13 @@ export default function Home() {
           gsap.set(heading, { scale: 1 });
 
           let tOrigin = '50% 50%';
-          const zoomTarget = heading.querySelector('.zoom-origin');
+          const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+          let zoomTarget = heading.querySelector('.zoom-origin');
+          if (isMobile) {
+            zoomTarget = heading.querySelector('.zoom-origin-mobile') || zoomTarget;
+          } else {
+            zoomTarget = heading.querySelector('.zoom-origin-desktop') || zoomTarget;
+          }
           if (zoomTarget) {
             const hRect = heading.getBoundingClientRect();
             const targetRect = zoomTarget.getBoundingClientRect();
@@ -350,8 +361,8 @@ export default function Home() {
       <main ref={mainRef} className="relative h-svh w-full overflow-hidden">
         <HomeHero />
         <TextSection>
-          Toda empres<span className="zoom-origin">a</span> <br className="md:hidden" /> pode
-          crescer. <br />
+          Toda empres<span className="zoom-origin-desktop">a</span> <br className="md:hidden" /> pod
+          <span className="zoom-origin-mobile">e</span> crescer. <br />
           Mas poucas estão <br className="md:hidden" /> preparadas para isso.
         </TextSection>
         <TextSection variant="light">
